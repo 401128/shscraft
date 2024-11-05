@@ -5,8 +5,104 @@
   </head>
 <body>
 
-  <h1>This is a Heading</h1>
-  <p>This is a paragraph.</p>
+  <center><h1>Welcome to the SHS Craft Offical Website!</h1></center>
+  <center><p>Below are buttons that you can choose what mode you want to play</p></center>
 
 </body>
+</html>
+
+
+
+
+<html>
+<head>
+<style>
+.button {
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+.button1 {
+  background-color: white; 
+  color: black; 
+  border: 2px solid #04AA6D;
+}
+
+.button1:hover {
+  background-color: #04AA6D;
+  color: white;
+}
+
+.button2 {
+  background-color: white; 
+  color: black; 
+  border: 2px solid #008CBA;
+}
+
+.button2:hover {
+  background-color: #008CBA;
+  color: white;
+}
+
+</style>
+</head>
+<body>
+
+
+<center><a href="https://shscraft.github.io/ohio.html"><button class="button button1">Single player</button></a>
+<a href="http://jimmysserver.westus2.cloudapp.azure.com:8081/"><button class="button button2">Multiplayer</button></a></center>
+
+</body>
+<center><h1>-------------------------------------------------------------------------</h1></center>
+<center><h1>Rules:</h1> <!-- Rules -->
+<p>No Griefing</p>
+<p>No Destroying Spawn</p>
+<p>Have Fun</p></center>
+<center><h1>-------------------------------------------------------------------------</h1></center>
+
+<center>
+	<h1>Support</h1>
+    	<p><b>Ban Appeals:</b> You may appeal bans at this form <a href="https://docs.google.com/forms/d/e/1FAIpQLSeeJlzF81FC0RJyEKb3xvO7gwPf-yhPm0vba2f564Xoj7t-RA/viewform">Ban Appeal Form</a></p>
+        <p><b>Issues with lag?</b> <a href="https://shscraft.github.io/guide">Refer to this guide.</a>
+ </p>
+
+</center>
+
+<center><h1>-------------------------------------------------------------------------</h1>
+</center>
+<center><h1>Donations:</h1></center>
+<p>If you would like to donate to this server and recieve a custom rank, you can send any amount of money to @baconmaniagd on venmo.
+have the comment be what you would like the rank name to be, along with what color you want it to be and your username on minecraft.
+<b>The rank is entirely cosmetic</b>, but all donations are greatly appreciated!</p>
+<center><h1>-------------------------------------------------------------------------</h1>
+<center><h3>Admin Web Stuff (Ignore)</h3></center>
+<form style="margin-top: 0%;margin-left: 0%" 
+onsubmit="return check();" action="home.html" >
+    <div class="inputcontent">
+        <input type="password" id="password" />   
+    </div>
+    <div class="buttons">
+        <input type="submit" style="display: none"/>
+    </div>
+</form>
+
+<script>
+    function check(){
+        var passwd = document.getElementById("password").value;
+            if (passwd == "AdminLogin"){
+            return true;
+            } else {
+            return false;
+           }
+    }
+</script></center>
+
 </html>
