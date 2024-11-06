@@ -70,6 +70,129 @@ body {
 	<h3>Website Dev Source: <a href="https://github.com/401128/shscraft">https://github.com/401128/shscraft</a></h3>
 	<h3>Ban Appeal Form: <a href="https://docs.google.com/forms/d/e/1FAIpQLSeeJlzF81FC0RJyEKb3xvO7gwPf-yhPm0vba2f564Xoj7t-RA/viewform">https://docs.google.com/forms/d/e/1FAIpQLSeeJlzF81FC0RJyEKb3xvO7gwPf-yhPm0vba2f564Xoj7t-RA/viewform</a></h3>
 </div>
+	<!DOCTYPE html> 
+
+<html lang="en"> 
+
+<head> 
+
+  <meta charset="UTF-8"> 
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+
+  <title>Chat Room</title> 
+
+  <style> 
+
+    body { font-family: Arial, sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; background-color: #f4f4f9; } 
+
+    .chat-container { width: 300px; height: 500px; border: 1px solid #ddd; background-color: #fff; display: flex; flex-direction: column; } 
+
+    .chat-box { flex: 1; padding: 10px; overflow-y: auto; border-bottom: 1px solid #ddd; } 
+
+    .message { padding: 5px; margin: 5px 0; border-radius: 5px; } 
+
+    .message.user { background-color: #dcf8c6; align-self: flex-end; } 
+
+    .message.other { background-color: #eee; align-self: flex-start; } 
+
+    .chat-input { display: flex; border-top: 1px solid #ddd; } 
+
+    .chat-input input { flex: 1; padding: 10px; border: none; outline: none; } 
+
+    .chat-input button { padding: 10px 20px; border: none; background-color: #007bff; color: #fff; cursor: pointer; } 
+
+  </style> 
+
+</head> 
+
+<body> 
+
+ 
+
+  <div class="chat-container"> 
+
+    <div id="chat-box" class="chat-box"></div> 
+
+    <div class="chat-input"> 
+
+      <input type="text" id="message" placeholder="Type a message..."> 
+
+      <button onclick="sendMessage()">Send</button> 
+
+    </div> 
+
+  </div> 
+
+ 
+
+  <script> 
+
+    const chatBox = document.getElementById('chat-box'); 
+
+ 
+
+    // Function to add message to chat box 
+
+    function addMessage(content, type) { 
+
+      const message = document.createElement('div'); 
+
+      message.className = 'message ' + type; 
+
+      message.textContent = content; 
+
+      chatBox.appendChild(message); 
+
+      chatBox.scrollTop = chatBox.scrollHeight; // Scroll to bottom 
+
+    } 
+
+ 
+
+    // Function to send message 
+
+    function sendMessage() { 
+
+      const messageInput = document.getElementById('message'); 
+
+      const message = messageInput.value.trim(); 
+
+      if (message) { 
+
+        addMessage(message, 'user'); // Add user message 
+
+        // Here you would add code to send the message to the server 
+
+        messageInput.value = ''; // Clear input 
+
+      } 
+
+    } 
+
+ 
+
+    // Placeholder function for receiving messages 
+
+    function receiveMessage(content) { 
+
+      addMessage(content, 'other'); 
+
+    } 
+
+ 
+
+    // Example: Simulate receiving a message 
+
+    setTimeout(() => receiveMessage('Welcome to the chat!'), 1000); 
+
+  </script> 
+
+ 
+
+</body> 
+
+</html> 
 
 </body>
 </html>
