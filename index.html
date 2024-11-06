@@ -50,7 +50,149 @@ body {
 
 </body>
 </html>
-  
+        <style>
+          /* General Styles */
+          body.dark-mode {
+              background-color: #121212;
+              color: white;
+          }
+
+          .button {
+              border: none;
+              color: white;
+              padding: 16px 32px;
+              text-align: center;
+              text-decoration: none;
+              display: inline-block;
+              font-size: 16px;
+              margin: 4px 2px;
+              transition-duration: 0.4s;
+              cursor: pointer;
+          }
+
+          /* Light mode button styles */
+          .button1 {
+              background-color: white; 
+              color: black; 
+              border: 2px solid #04AA6D;
+          }
+
+          .button1:hover {
+              background-color: #04AA6D;
+              color: white;
+          }
+
+          .button2 {
+              background-color: white; 
+              color: black; 
+              border: 2px solid #008CBA;
+          }
+
+          .button2:hover {
+              background-color: #008CBA;
+              color: white;
+          }
+
+          /* Dark mode button styles */
+          body.dark-mode .button1 {
+              background-color: #333; 
+              color: white; 
+              border: 2px solid #04AA6D;
+          }
+
+          body.dark-mode .button1:hover {
+              background-color: #04AA6D;
+              color: white;
+          }
+
+          body.dark-mode .button2 {
+              background-color: #333; 
+              color: white; 
+              border: 2px solid #008CBA;
+          }
+
+          body.dark-mode .button2:hover {
+              background-color: #008CBA;
+              color: white;
+          }
+
+          /* Dark mode toggle button styles */
+          .dark-mode-toggle {
+              position: absolute;
+              top: 10px;
+              right: 10px;
+              padding: 8px 12px;
+              cursor: pointer;
+              border: 1px solid #ccc;
+              background-color: #333;
+              color: #fff;
+              border-radius: 5px;
+          }
+
+          /* Additional text styles */
+          .notice {
+              font-size: 24px;
+              font-weight: bold;
+              color: red;
+              margin-top: 10px;
+          }
+
+          .sub-notice {
+              font-size: 18px;
+              font-weight: bold;
+              color: #FF4500;
+              margin-top: 5px;
+          }
+      </style>
+      <script>
+          // Check for saved dark mode preference in cookies
+          window.onload = function() {
+              if (document.cookie.includes('darkMode=true')) {
+                  document.body.classList.add('dark-mode');
+              }
+          };
+
+          // Toggle dark mode and save preference in cookies
+          function toggleDarkMode() {
+              document.body.classList.toggle('dark-mode');
+              if (document.body.classList.contains('dark-mode')) {
+                  document.cookie = "darkMode=true; path=/";
+              } else {
+                  document.cookie = "darkMode=false; path=/";
+              }
+          }
+
+          // Toggle text function for BaconMania / Evan Carlston
+          function toggleText() {
+              var creditElement = document.getElementById("creditName");
+              if (creditElement.innerHTML === "BaconMania") {
+                  creditElement.innerHTML = "Evan Carlston";
+              } else {
+                  creditElement.innerHTML = "BaconMania";
+              }
+          }
+
+          // Toggle text function for Infinity / Volodimir Nesterchuck
+          function toggleText2() {
+              var creditElement2 = document.getElementById("creditName2");
+              if (creditElement2.innerHTML === "Infinity") {
+                  creditElement2.innerHTML = "Volodimir Nesterchuck";
+              } else {
+                  creditElement2.innerHTML = "Infinity";
+              }
+          }
+
+          // Password check for admin
+          function check(){
+              var passwd = document.getElementById("password").value;
+              return passwd === "AdminLogin";
+          }
+      </script>
+  </head>
+  <body>
+
+      <!-- Dark mode toggle button -->
+      <button class="dark-mode-toggle" onclick="toggleDarkMode()">Toggle Dark Mode</button>
 	
 
   <center><h1>Welcome to the SHS Craft Offical Website!</h1></center>
