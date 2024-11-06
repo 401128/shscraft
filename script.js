@@ -1,2 +1,1 @@
-// Insipred by this image from Pinterest:
-// https://www.pinterest.com/pin/14425661292261254/
+// Weird Google Chrome Bug, you'll need to hover the body to make sure all is rendered - anyone knows a solution?
