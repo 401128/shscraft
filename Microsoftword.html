@@ -19,6 +19,21 @@
       color: #776e65;
     }
 
+    #score-container {
+      margin: 10px 0;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .score-box {
+      background: #bbada0;
+      padding: 10px 20px;
+      border-radius: 10px;
+      color: #f9f6f2;
+      font-size: 1.2rem;
+    }
+
     #game-container {
       display: inline-block;
       background: #bbada0;
@@ -66,6 +81,10 @@
 </head>
 <body>
   <h1>2048 Game</h1>
+  <div id="score-container">
+    <div class="score-box">Score: <span id="score">0</span></div>
+    <div class="score-box">High Score: <span id="high-score">0</span></div>
+  </div>
   <p>Use the arrow keys to play!</p>
   <div id="game-container">
     <div id="grid"></div>
@@ -73,9 +92,14 @@
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       const gridContainer = document.getElementById("grid");
-      let grid = Array(4)
-        .fill()
-        .map(() => Array(4).fill(0));
+      const scoreDisplay = document.getElementById("score");
+      const highScoreDisplay = document.getElementById("high-score");
+
+      let grid = Array(4).fill().map(() => Array(4).fill(0));
+      let score = 0;
+      let highScore = parseInt(localStorage.getItem("highScore")) || 0;
+
+      highScoreDisplay.textContent = highScore;
 
       function createGrid() {
         gridContainer.innerHTML = "";
@@ -113,7 +137,9 @@
         const merged = [];
         while (nonZero.length) {
           if (nonZero[0] === nonZero[1]) {
-            merged.push(nonZero.shift() * 2);
+            const mergedValue = nonZero.shift() * 2;
+            merged.push(mergedValue);
+            score += mergedValue;
             nonZero.shift();
           } else {
             merged.push(nonZero.shift());
@@ -153,6 +179,15 @@
         }
       }
 
+      function updateScore() {
+        scoreDisplay.textContent = score;
+        if (score > highScore) {
+          highScore = score;
+          highScoreDisplay.textContent = highScore;
+          localStorage.setItem("highScore", highScore);
+        }
+      }
+
       function handleKeydown(event) {
         switch (event.key) {
           case "ArrowLeft":
@@ -172,11 +207,14 @@
         }
         spawnTile();
         createGrid();
+        updateScore();
       }
 
       document.addEventListener("keydown", handleKeydown);
 
       function initGame() {
+        score = 0;
+        scoreDisplay.textContent = score;
         spawnTile();
         spawnTile();
         createGrid();
