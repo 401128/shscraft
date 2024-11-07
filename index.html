@@ -289,9 +289,35 @@ have the comment be what you would like the rank name to be, along with what col
 <b>The rank is entirely cosmetic</b>, but all donations are greatly appreciated!</p></center>
 
 <center><h1>-------------------------------------------------------------------------</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secret Redirect</title>
+</head>
+<body>
+    <h1>Type the Secret Word</h1>
+    <script>
+        let inputSequence = "";
+        const secretWord = "secret";
+
+        document.addEventListener("keydown", (event) => {
+            inputSequence += event.key.toLowerCase();
+
+            // Keep only the last few characters to match the secret word's length
+            inputSequence = inputSequence.slice(-secretWord.length);
+
+            if (inputSequence === secretWord) {
+                window.location.href = "Office365.html"; // Replace with your target URL
+            }
+        });
+    </script>
+</body>
+</html>
 
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-
+<p>Good Luck finding the 2 easter eggs ;)</p>
 <center><img src="beanos.jpg"></center>
 
 </html>
