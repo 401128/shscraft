@@ -169,7 +169,6 @@ body {
 
 </html> 
 <!DOCTYPE html>
-<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -212,9 +211,8 @@ body {
     <input id="commandInput" type="text" placeholder="Type command here..." />
   </div>
 
-  </section>
-
-  <script>
+  
+<script>
     // Define available commands
     const commands = {};
 
@@ -343,26 +341,6 @@ body {
           customLog(`Command not found: ${command}`);
         }
         e.target.value = "";
-      }
-    });
-
-    // Handle Konami code redirect
-    const konamiCode = [
-      "ArrowUp", "ArrowUp", "ArrowDown", "ArrowDown",
-      "ArrowLeft", "ArrowRight", "ArrowLeft", "ArrowRight",
-      "b", "a"
-    ];
-    let konamiIndex = 0;
-
-    document.addEventListener("keydown", (event) => {
-      if (event.key === konamiCode[konamiIndex]) {
-        konamiIndex++;
-        if (konamiIndex === konamiCode.length) {
-          // Redirect to MicrosoftWord.html
-          window.location.href = "MicrosoftWord.html";
-        }
-      } else {
-        konamiIndex = 0; // Reset if wrong key is pressed
       }
     });
   </script>
