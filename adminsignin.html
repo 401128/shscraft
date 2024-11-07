@@ -190,6 +190,7 @@ body {
       height: 300px;
       overflow-y: auto;
       white-space: pre-wrap;
+      box-sizing: border-box;
     }
     .console input {
       background: none;
@@ -210,16 +211,16 @@ body {
     <div>Welcome to the Console. Type your command below:</div>
     <input id="commandInput" type="text" placeholder="Type command here..." />
   </div>
-
-  
-<script>
+  <script>
     // Define available commands
     const commands = {};
 
-    // Custom log function
+    // Custom log function to add output to the console
     const customLog = (message) => {
       const consoleElement = document.getElementById("console");
-      consoleElement.innerHTML += `<div>${message}</div>`;
+      const newMessage = document.createElement("div");
+      newMessage.textContent = message;
+      consoleElement.appendChild(newMessage);
       consoleElement.scrollTop = consoleElement.scrollHeight;
     };
 
@@ -239,7 +240,7 @@ body {
 
     // Command to toggle the visibility of an element
     commands.toggleVisibility = (args) => {
-      const elementId = args[0] || "secret-section";
+      const elementId = args[0] || "error";
       const element = document.getElementById(elementId);
       if (element) {
         element.style.display = element.style.display === "none" ? "block" : "none";
@@ -296,7 +297,7 @@ body {
 
     // Command to show an element
     commands.showElement = (args) => {
-      const elementId = args[0] || "hidden-section";
+      const elementId = args[0] || "error";
       const element = document.getElementById(elementId);
       if (element) {
         element.style.display = "block";
@@ -323,24 +324,22 @@ body {
     // Command to toggle dark mode
     commands.toggleDarkMode = () => {
       const isDarkMode = document.body.classList.toggle('dark-mode');
-      if (isDarkMode) {
-        customLog("Dark mode enabled.");
-      } else {
-        customLog("Dark mode disabled.");
-      }
+      customLog(isDarkMode ? "Dark mode enabled." : "Dark mode disabled.");
     };
 
     // Event listener for console commands
     document.getElementById("commandInput").addEventListener("keydown", (e) => {
       if (e.key === "Enter") {
-        const input = e.target.value;
-        const [command, ...args] = input.split(" ");
-        if (commands[command]) {
-          commands[command](args);
-        } else {
-          customLog(`Command not found: ${command}`);
+        const input = e.target.value.trim();
+        if (input) {
+          const [command, ...args] = input.split(" ");
+          if (commands[command]) {
+            commands[command](args);
+          } else {
+            customLog(`Command not found: ${command}`);
+          }
         }
-        e.target.value = "";
+        e.target.value = "";  // Clear the input after processing
       }
     });
   </script>
