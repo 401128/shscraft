@@ -40,6 +40,7 @@
       padding: 15px;
       border-radius: 10px;
       margin-top: 20px;
+      position: relative;
     }
 
     #grid {
@@ -77,6 +78,42 @@
     .tile[data-value="512"] { background: #edc850; color: #f9f6f2; }
     .tile[data-value="1024"] { background: #edc53f; color: #f9f6f2; }
     .tile[data-value="2048"] { background: #edc22e; color: #f9f6f2; }
+
+    #end-screen {
+      display: none;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.8);
+      color: #fff;
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 10;
+    }
+
+    #end-screen h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+
+    #restart-btn {
+      background: #f67c5f;
+      color: #fff;
+      padding: 10px 20px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    #restart-btn:hover {
+      background: #f65e3b;
+    }
   </style>
 </head>
 <body>
@@ -88,12 +125,20 @@
   <p>Use the arrow keys to play!</p>
   <div id="game-container">
     <div id="grid"></div>
+    <div id="end-screen">
+      <h2>Game Over</h2>
+      <p>Your Score: <span id="final-score">0</span></p>
+      <button id="restart-btn">Restart</button>
+    </div>
   </div>
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       const gridContainer = document.getElementById("grid");
       const scoreDisplay = document.getElementById("score");
       const highScoreDisplay = document.getElementById("high-score");
+      const endScreen = document.getElementById("end-screen");
+      const finalScoreDisplay = document.getElementById("final-score");
+      const restartButton = document.getElementById("restart-btn");
 
       let grid = Array(4).fill().map(() => Array(4).fill(0));
       let score = 0;
@@ -188,6 +233,17 @@
         }
       }
 
+      function isGameOver() {
+        for (let i = 0; i < 4; i++) {
+          for (let j = 0; j < 4; j++) {
+            if (grid[i][j] === 0) return false;
+            if (j < 3 && grid[i][j] === grid[i][j + 1]) return false;
+            if (i < 3 && grid[i][j] === grid[i + 1][j]) return false;
+          }
+        }
+        return true;
+      }
+
       function handleKeydown(event) {
         switch (event.key) {
           case "ArrowLeft":
@@ -208,7 +264,22 @@
         spawnTile();
         createGrid();
         updateScore();
+
+        if (isGameOver()) {
+          finalScoreDisplay.textContent = score;
+          endScreen.style.display = "flex";
+        }
       }
+
+      restartButton.addEventListener("click", () => {
+        score = 0;
+        scoreDisplay.textContent = score;
+        endScreen.style.display = "none";
+        grid = Array(4).fill().map(() => Array(4).fill(0));
+        spawnTile();
+        spawnTile();
+        createGrid();
+      });
 
       document.addEventListener("keydown", handleKeydown);
 
