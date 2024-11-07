@@ -168,10 +168,11 @@ body {
 
 
 </html> 
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Custom Console</title>
+  <title>Custom Console with Commands</title>
   <style>
     /* Basic styles for the custom console */
     #console-container {
@@ -199,12 +200,10 @@ body {
   <!-- Console display area -->
   <div id="console-container"></div>
 
-  <!-- Input for console commands (optional) -->
+  <!-- Input for console commands -->
   <input type="text" id="console-input" placeholder="Enter command" />
 
   <script>
-    // JavaScript code to manage the custom console
-
     // Get console container and input elements
     const consoleContainer = document.getElementById("console-container");
     const consoleInput = document.getElementById("console-input");
@@ -219,21 +218,41 @@ body {
 
     // Example usage of the custom console
     customLog("Welcome to the custom console!");
-    customLog("This is a test log message.");
+    customLog("Type 'help' to see available commands.");
 
-    // Handling command input (optional)
+    // Define your custom commands here
+    const commands = {
+      help: () => {
+        customLog("Available commands:");
+        customLog("help - Show this message.");
+        customLog("clear - Clear the console.");
+        customLog("date - Show the current date and time.");
+        customLog("greet - Greet the user.");
+      },
+      clear: () => {
+        consoleContainer.innerHTML = ''; // Clear the console display
+      },
+      date: () => {
+        customLog("Current date and time: " + new Date().toString());
+      },
+      greet: () => {
+        customLog("Hello, user! Welcome to the custom console.");
+      },
+    };
+
+    // Handling command input
     consoleInput.addEventListener("keydown", (event) => {
       if (event.key === "Enter") {
-        const command = consoleInput.value;
+        const command = consoleInput.value.trim().toLowerCase(); // Get and normalize the input
         consoleInput.value = ""; // Clear the input
-        customLog(`> ${command}`); // Show the command in the console
 
-        // Run the command and display the result
-        try {
-          const result = eval(command); // Use `eval` for quick testing (caution!)
-          customLog(result);
-        } catch (error) {
-          customLog(`Error: ${error.message}`);
+        customLog(`> ${command}`); // Show the command entered in the console
+
+        // Check if the command exists in the predefined commands
+        if (commands[command]) {
+          commands[command](); // Call the corresponding command function
+        } else {
+          customLog(`Error: Unknown command '${command}'`);
         }
       }
     });
@@ -241,9 +260,5 @@ body {
     // Redirect console.log output to customLog
     console.log = customLog;
   </script>
-</body>
-</html>
-
-
 </body>
 </html>
