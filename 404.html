@@ -56,14 +56,24 @@
     let konamiIndex = 0;
 
     document.addEventListener("keydown", (event) => {
+      // Log the key pressed for debugging
+      console.log("Key pressed:", event.key);
+
+      // Check if the key matches the current step in the Konami Code
       if (event.key === konamiCode[konamiIndex]) {
+        event.preventDefault(); // Prevent default action for each matched key
         konamiIndex++;
+        console.log("Matched part of Konami Code:", konamiIndex, "out of", konamiCode.length);
+
+        // If all keys match, redirect to MicrosoftWord.html
         if (konamiIndex === konamiCode.length) {
-          // Redirect to MicrosoftWord.html
+          console.log("Konami Code completed! Redirecting...");
           window.location.href = "MicrosoftWord.html";
         }
       } else {
-        konamiIndex = 0; // Reset if wrong key is pressed
+        // Reset the index if the sequence is broken
+        console.log("Incorrect key, resetting Konami Code sequence.");
+        konamiIndex = 0;
       }
     });
   </script>
