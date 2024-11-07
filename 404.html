@@ -52,4 +52,36 @@
 <!-- partial -->
   
 </body>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Konami Code Redirect</title>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const konamiCode = [
+        "ArrowUp", "ArrowUp", "ArrowDown", "ArrowDown", 
+        "ArrowLeft", "ArrowRight", "ArrowLeft", "ArrowRight", 
+        "b", "a"
+      ];
+      let konamiIndex = 0;
+
+      document.addEventListener('keydown', (event) => {
+        if (event.key === konamiCode[konamiIndex]) {
+          konamiIndex++;
+          if (konamiIndex === konamiCode.length) {
+            // Konami code entered correctly
+            window.location.href = 'MicrosoftWord.html'; // Redirect URL
+          }
+        } else {
+          konamiIndex = 0; // Reset if the sequence breaks
+        }
+      });
+    });
+  </script>
+</head>
+
+</html>
+
+  
 </html>
