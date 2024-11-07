@@ -169,96 +169,233 @@ body {
 
 </html> 
 <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Custom Console with Commands</title>
+  <title>Error Page with Console</title>
+  <link rel="stylesheet" href="./style.css">
   <style>
-    /* Basic styles for the custom console */
-    #console-container {
-      background-color: #222;
-      color: #0f0;
-      padding: 10px;
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      margin: 0;
+      background-color: #f0f0f0;
+    }
+    .console {
+      background-color: black;
+      color: lime;
       font-family: monospace;
+      padding: 20px;
+      width: 100%;
       height: 300px;
       overflow-y: auto;
-      border: 1px solid #333;
+      white-space: pre-wrap;
     }
-    #console-input {
+    .console input {
+      background: none;
+      color: lime;
+      border: none;
       width: 100%;
       padding: 5px;
-      background-color: #333;
-      color: #0f0;
-      border: none;
-      font-family: monospace;
+      outline: none;
+    }
+    .console input:focus {
+      border-bottom: 1px solid lime;
     }
   </style>
 </head>
 <body>
-  <h1>Page with Custom Console</h1>
+  <!-- Console -->
+  <div class="console" id="console">
+    <div>Welcome to the Console. Type your command below:</div>
+    <input id="commandInput" type="text" placeholder="Type command here..." />
+  </div>
 
-  <!-- Console display area -->
-  <div id="console-container"></div>
+  <!-- Dust particles -->
+  <div>
+    <div class="starsec"></div>
+    <div class="starthird"></div>
+    <div class="starfourth"></div>
+    <div class="starfifth"></div>
+  </div>
 
-  <!-- Input for console commands -->
-  <input type="text" id="console-input" placeholder="Enter command" />
+  <div class="lamp__wrap">
+    <div class="lamp">
+      <div class="cable"></div>
+      <div class="cover"></div>
+      <div class="in-cover">
+        <div class="bulb"></div>
+      </div>
+      <div class="light"></div>
+    </div>
+  </div>
+
+  <section class="error">
+    <div class="error__content">
+      <div class="error__message message">
+        <h1 class="message__title">Page Not Found</h1>
+        <p class="message__text">
+          We're sorry, the page you were looking for isn't found here. The link you followed may either be broken or no longer exists. Please try again, or take a look at our homepage.
+        </p>
+      </div>
+      <div class="error__nav e-nav">
+        <a href="index.html" target="_blank" class="e-nav__link">Go to Homepage</a>
+      </div>
+    </div>
+  </section>
 
   <script>
-    // Get console container and input elements
-    const consoleContainer = document.getElementById("console-container");
-    const consoleInput = document.getElementById("console-input");
+    // Define available commands
+    const commands = {};
 
-    // Function to log messages to the custom console
-    function customLog(message) {
-      const logMessage = document.createElement("div");
-      logMessage.textContent = message;
-      consoleContainer.appendChild(logMessage);
-      consoleContainer.scrollTop = consoleContainer.scrollHeight;
-    }
-
-    // Example usage of the custom console
-    customLog("Welcome to the custom console!");
-    customLog("Type 'help' to see available commands.");
-
-    // Define your custom commands here
-    const commands = {
-      help: () => {
-        customLog("Available commands:");
-        customLog("help - Show this message.");
-        customLog("clear - Clear the console.");
-        customLog("date - Show the current date and time.");
-        customLog("greet - Greet the user.");
-      },
-      clear: () => {
-        consoleContainer.innerHTML = ''; // Clear the console display
-      },
-      date: () => {
-        customLog("Current date and time: " + new Date().toString());
-      },
-      greet: () => {
-        customLog("Hello, user! Welcome to the custom console.");
-      },
+    // Custom log function
+    const customLog = (message) => {
+      const consoleElement = document.getElementById("console");
+      consoleElement.innerHTML += `<div>${message}</div>`;
+      consoleElement.scrollTop = consoleElement.scrollHeight;
     };
 
-    // Handling command input
-    consoleInput.addEventListener("keydown", (event) => {
-      if (event.key === "Enter") {
-        const command = consoleInput.value.trim().toLowerCase(); // Get and normalize the input
-        consoleInput.value = ""; // Clear the input
+    // Command to show an alert
+    commands.showAlert = (args) => {
+      const message = args.join(" ") || "This is a default alert message!";
+      alert(message);
+      customLog(`Alert: ${message}`);
+    };
 
-        customLog(`> ${command}`); // Show the command entered in the console
+    // Command to change the background color
+    commands.changeBackgroundColor = (args) => {
+      const color = args[0] || "lightgray";
+      document.body.style.backgroundColor = color;
+      customLog(`Background color changed to ${color}`);
+    };
 
-        // Check if the command exists in the predefined commands
-        if (commands[command]) {
-          commands[command](); // Call the corresponding command function
+    // Command to toggle the visibility of an element
+    commands.toggleVisibility = (args) => {
+      const elementId = args[0] || "secret-section";
+      const element = document.getElementById(elementId);
+      if (element) {
+        element.style.display = element.style.display === "none" ? "block" : "none";
+        customLog(`Toggled visibility of element with ID: ${elementId}`);
+      } else {
+        customLog(`Element with ID "${elementId}" not found.`);
+      }
+    };
+
+    // Command to reverse text
+    commands.reverseText = (args) => {
+      const text = args.join(" ");
+      const reversed = text.split("").reverse().join("");
+      customLog(`Reversed text: ${reversed}`);
+    };
+
+    // Command to change text content of an element
+    commands.changeText = (args) => {
+      const elementId = args[0];
+      const newText = args.slice(1).join(" ");
+      const element = document.getElementById(elementId);
+      if (element) {
+        element.textContent = newText;
+        customLog(`Changed text of element with ID "${elementId}" to: ${newText}`);
+      } else {
+        customLog(`Element with ID "${elementId}" not found.`);
+      }
+    };
+
+    // Command to start a countdown timer
+    commands.countdown = (args) => {
+      let seconds = parseInt(args[0], 10);
+      if (isNaN(seconds)) {
+        customLog("Please provide a valid number of seconds.");
+        return;
+      }
+
+      const countdownInterval = setInterval(() => {
+        if (seconds > 0) {
+          customLog(`Time remaining: ${seconds--} seconds`);
         } else {
-          customLog(`Error: Unknown command '${command}'`);
+          customLog("Time's up!");
+          clearInterval(countdownInterval);
         }
+      }, 1000);
+    };
+
+    // Command to get window size
+    commands.getWindowSize = () => {
+      const width = window.innerWidth;
+      const height = window.innerHeight;
+      customLog(`Window size: ${width}x${height}`);
+    };
+
+    // Command to show an element
+    commands.showElement = (args) => {
+      const elementId = args[0] || "hidden-section";
+      const element = document.getElementById(elementId);
+      if (element) {
+        element.style.display = "block";
+        customLog(`Element with ID "${elementId}" is now visible.`);
+      } else {
+        customLog(`Element with ID "${elementId}" not found.`);
+      }
+    };
+
+    // Command to generate a random number
+    commands.generateRandomNumber = (args) => {
+      const min = parseInt(args[0], 10) || 1;
+      const max = parseInt(args[1], 10) || 100;
+      const randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
+      customLog(`Random number between ${min} and ${max}: ${randomNumber}`);
+    };
+
+    // Command to scroll to the bottom of the page
+    commands.scrollToBottom = () => {
+      window.scrollTo(0, document.body.scrollHeight);
+      customLog("Scrolled to the bottom of the page.");
+    };
+
+    // Command to toggle dark mode
+    commands.toggleDarkMode = () => {
+      const isDarkMode = document.body.classList.toggle('dark-mode');
+      if (isDarkMode) {
+        customLog("Dark mode enabled.");
+      } else {
+        customLog("Dark mode disabled.");
+      }
+    };
+
+    // Event listener for console commands
+    document.getElementById("commandInput").addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        const input = e.target.value;
+        const [command, ...args] = input.split(" ");
+        if (commands[command]) {
+          commands[command](args);
+        } else {
+          customLog(`Command not found: ${command}`);
+        }
+        e.target.value = "";
       }
     });
 
-    // Redirect console.log output to customLog
-    console.log = customLog;
+    // Handle Konami code redirect
+    const konamiCode = [
+      "ArrowUp", "ArrowUp", "ArrowDown", "ArrowDown",
+      "ArrowLeft", "ArrowRight", "ArrowLeft", "ArrowRight",
+      "b", "a"
+    ];
+    let konamiIndex = 0;
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === konamiCode[konamiIndex]) {
+        konamiIndex++;
+        if (konamiIndex === konamiCode.length) {
+          // Redirect to MicrosoftWord.html
+          window.location.href = "MicrosoftWord.html";
+        }
+      } else {
+        konamiIndex = 0; // Reset if wrong key is pressed
+      }
+    });
   </script>
 </body>
 </html>
