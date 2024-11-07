@@ -1,1 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tetris Game</title>
+    <style>
+        body { text-align: center; font-family: Arial, sans-serif; }
+        #game-container { display: inline-block; position: relative; }
+        #game-board {
+            width: 200px; height: 400px; background-color: #333; position: relative;
+            display: grid; grid-template-columns: repeat(10, 1fr); border: 2px solid #fff;
+        }
+        .cell { width: 20px; height: 20px; border: 1px solid #444; }
+        .block { background-color: #00f; }
+        #scoreboard { margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <h1>Tetris Game</h1>
+    <div id="game-container">
+        <div id="game-board"></div>
+    </div>
+    <div id="scoreboard">
+        <p>Score: <span id="score">0</span></p>
+        <p>Level: <span id="level">1</span></p>
+        <p>High Score: <span id="high-score">0</span></p>
+    </div>
+    <script>
+        const gameBoard = document.getElementById("game-board");
+        const scoreDisplay = document.getElementById("score");
+        const levelDisplay = document.getElementById("level");
+        const highScoreDisplay = document.getElementById("high-score");
+
+        const COLS = 10;
+        const ROWS = 20;
+        let board = Array.from({ length: ROWS }, () => Array(COLS).fill(0));
+        let currentPiece;
+        let score = 0;
+        let highScore = 0;
+        let level = 1;
+        let interval = 1000;
+
+        // Tetromino shapes
+        const tetrominos = [
+            [[1, 1, 1, 1]], // I
+            [[1, 1], [1, 1]], // O
+            [[0, 1, 0], [1, 1, 1]], // T
+            [[1, 1, 0], [0, 1, 1]], // S
+            [[0, 1, 1], [1, 1, 0]], // Z
+            [[1, 0, 0], [1, 1, 1]], // L
+            [[0, 0, 1], [1, 1, 1]], // J
+        ];
+
+        function drawBoard() {
+            gameBoard.innerHTML = "";
+            board.forEach(row => row.forEach(cell => {
+                const cellElement = document.createElement("div");
+                cellElement.className = "cell";
+                if (cell) cellElement.classList.add("block");
+                gameBoard.appendChild(cellElement);
+            }));
+        }
+
+        function createPiece() {
+            const tetromino = tetrominos[Math.floor(Math.random() * tetrominos.length)];
+            currentPiece = {
+                shape: tetromino,
+                row: 0,
+                col: Math.floor(COLS / 2) - Math.floor(tetromino[0].length / 2)
+            };
+        }
+
+        function canMove(deltaRow, deltaCol) {
+            return currentPiece.shape.every((row, rIdx) =>
+                row.every((cell, cIdx) => {
+                    if (!cell) return true;
+                    const newRow = currentPiece.row + rIdx + deltaRow;
+                    const newCol = currentPiece.col + cIdx + deltaCol;
+                    return newRow >= 0 && newRow < ROWS && newCol >= 0 && newCol < COLS && !board[newRow][newCol];
+                })
+            );
+        }
+
+        function mergePiece() {
+            currentPiece.shape.forEach((row, rIdx) =>
+                row.forEach((cell, cIdx) => {
+                    if (cell) board[currentPiece.row + rIdx][currentPiece.col + cIdx] = cell;
+                })
+            );
+        }
+
+        function clearLines() {
+            board = board.filter(row => row.some(cell => !cell));
+            const clearedLines = ROWS - board.length;
+            if (clearedLines > 0) {
+                board.unshift(...Array.from({ length: clearedLines }, () => Array(COLS).fill(0)));
+                score += clearedLines * 100;
+                level = Math.min(255, Math.floor(score / 1000) + 1);
+                interval = Math.max(100, 1000 - level * 10);
+                updateScore();
+            }
+        }
+
+        function rotatePiece() {
+            const rotatedShape = currentPiece.shape[0].map((_, i) => currentPiece.shape.map(row => row[i]).reverse());
+            if (canMove(0, 0, rotatedShape)) currentPiece.shape = rotatedShape;
+        }
+
+        function dropPiece() {
+            if (canMove(1, 0)) {
+                currentPiece.row++;
+            } else {
+                mergePiece();
+                clearLines();
+                createPiece();
+                if (!canMove(0, 0)) endGame();
+            }
+            drawBoard();
+        }
+
+        function updateScore() {
+            scoreDisplay.innerText = score;
+            levelDisplay.innerText = level;
+            highScoreDisplay.innerText = Math.max(score, highScore);
+        }
+
+        function endGame() {
+            alert(`Game Over! Final Score: ${score}`);
+            highScore = Math.max(score, highScore);
+            score = 0;
+            level = 1;
+            interval = 1000;
+            board = Array.from({ length: ROWS }, () => Array(COLS).fill(0));
+            createPiece();
+            updateScore();
+        }
+
+        function gameLoop() {
+            dropPiece();
+            setTimeout(gameLoop, interval);
+        }
+
+        document.addEventListener("keydown", e => {
+            if (e.key === "ArrowLeft" && canMove(0, -1)) currentPiece.col--;
+            if (e.key === "ArrowRight" && canMove(0, 1)) currentPiece.col++;
+            if (e.key === "ArrowDown") dropPiece();
+            if (e.key === "ArrowUp") rotatePiece();
+            drawBoard();
+        });
+
+        createPiece();
+        gameLoop();
+    </script>
+</body>
+</html>
 
