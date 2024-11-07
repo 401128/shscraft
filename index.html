@@ -182,6 +182,16 @@ body {
                   creditElement2.innerHTML = "Infinity";
               }
           }
+		  
+		  // Toggle text function for goodgoonthe4th / Aleksei Stoyanov
+          function toggleText3() {
+              var creditElement3 = document.getElementById("creditName3");
+              if (creditElement3.innerHTML === "goodgoonthe4th") {
+                  creditElement3.innerHTML = "Aleksei Stoyanov";
+              } else {
+                  creditElement3.innerHTML = "goodgoonthe4th";
+              }
+          }
 
           // Password check for admin
           function check(){
@@ -196,9 +206,10 @@ body {
       <button class="dark-mode-toggle" onclick="toggleDarkMode()">Toggle Dark Mode</button>
 	
 
-  <center><h1>Welcome to the SHS Craft Offical Website!</h1></center>
-  <center><p>Multiplayer is open from 7:30am - 1am</p></center>
-  <center><p>Below are buttons that you can choose what mode you want to play</p></center>
+  <center><h1>Welcome to the SHSCraft Offical Website!</h1></center>
+  <center><p class="notice">USE YOUR PHONE'S HOTSPOT TO PLAY ON THE SERVER AT SCHOOL.</p></center>
+  <center><p class="sub-notice">THIS IS A TEMPORARY SOLUTION AND SHOULD BE FIXED SOON.</p></center>
+  <center><p>Server should now be up 24/7!</p></center>
 
 </body>
 </html>
@@ -248,47 +259,39 @@ body {
 </head>
 <body>
 
-
-<center><a href="Microsoft Word.html"><button class="button button1">Single player</button></a>
+<center><a href="ohio.html"><button class="button button1">Single player</button></a>
 <a href="http://jimmysserver.westus2.cloudapp.azure.com:8081/"><button class="button button2">Multiplayer</button></a></center>
 
 </body>
-	<center><p>If needed external help then email plurp943@gmail.com or text me at 425-382-1231</p></center>
+	<center><p>Send an email to plurp943@gmail.com or text 425-382-1231 for support.</p></center>
 
 </center>
 
 <center><h1>-------------------------------------------------------------------------</h1>
+
+<center><h1>Credits</h1></center>
+
+<!-- Toggle text for BaconMania / Evan Carlston -->
+      <center><p id="creditName" onclick="toggleText()" style="cursor: pointer; color: blue; text-decoration: underline;">BaconMania</p></center>
+
+      <!-- Toggle text for Infinity / Volodimir Nesterchuck -->
+      <center><p id="creditName2" onclick="toggleText2()" style="cursor: pointer; color: blue; text-decoration: underline;">Infinity</p></center>
+	  
+	  <!-- Toggle text for Infinity / Aleksei Stoyanov -->
+      <center><p id="creditName3" onclick="toggleText3()" style="cursor: pointer; color: blue; text-decoration: underline;">goodgoonthe4th</p></center>
+	  
+<center><h1>-------------------------------------------------------------------------</h1>
+
 </center>
 <center><h1>Donations:</h1></center>
-<center><p>If you would like to donate to this server and recieve a custom rank, you can send any amount of money to @baconmaniagd on venmo.
-have the comment be what you would like the rank name to be, along with what color you want it to be and your username on minecraft.
+<center><p>If you would like to donate to this server and recieve a custom rank, you can send any amount of money to @baconmaniagd on venmo.<br>
+have the comment be what you would like the rank name to be, along with what color you want it to be and your username on minecraft.<br>
 <b>The rank is entirely cosmetic</b>, but all donations are greatly appreciated!</p></center>
-<p>Also Good Luck finding the easter egg on the site</p>
 
-<script>
-    // Konami Code Logic
-    const konamiCode = [
-      "ArrowUp", "ArrowUp", "ArrowDown", "ArrowDown",
-      "ArrowLeft", "ArrowRight", "ArrowLeft", "ArrowRight",
-      "b", "a"
-    ];
-    let konamiIndex = 0;
+<center><h1>-------------------------------------------------------------------------</h1>
 
-    document.addEventListener("keydown", (event) => {
-      if (event.key === konamiCode[konamiIndex]) {
-        konamiIndex++;
-        if (konamiIndex === konamiCode.length) {
-          // Redirect to MicrosoftWord.html
-          window.location.href = "Outlook.html";
-        }
-      } else {
-        konamiIndex = 0; // Reset if wrong key is pressed
-      }
-    });
-  </script>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
+<center><img src="beanos.jpg"></center>
 
-
-
-	
 </html>
