@@ -205,7 +205,9 @@ body {
       <!-- Dark mode toggle button -->
       <button class="dark-mode-toggle" onclick="toggleDarkMode()">Toggle Dark Mode</button>
 
-	  
+	  <button type="button" class="rounded-button">
+  Last Updated: 11/12/24
+	</button>
   <center><h1>Welcome to the SHSCraft Offical Website!</h1></center>
   <center><p class="notice">USE YOUR PHONE'S HOTSPOT TO PLAY ON THE SERVER AT SCHOOL.</p></center>
   <center><p class="sub-notice">THIS IS A TEMPORARY SOLUTION AND SHOULD BE FIXED SOON.</p></center>
@@ -318,6 +320,51 @@ have the comment be what you would like the rank name to be, along with what col
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 <p>Good Luck finding the 3 easter eggs ;)</p>
 <center><img src="beanos.jpg"></center>
-	
+
+
+button.rounded-button {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    
+    padding: 1rem 2.25rem;
+    border-radius: 1000px;
+    
+    border: none;
+    position: relative;
+    background: #343434;
+    
+    font-size: 1.25rem;
+    line-height: 2rem;
+    color: #fff;
+    cursor: pointer;
+}
+button.rounded-button::before {
+    content: '';
+    display: block;
+    position: absolute;
+    border-radius: 1000px;
+    top: -0.1em;
+    bottom: -0.1em;
+    right: -0.1em;
+    left: -0.1em;
+    z-index: -1;
+    background: linear-gradient(240deg, #343434 0%, #ffffff 20%, #343434 50%);
+    background-size: 140%;
+    background-position: 0 0;
+    transition: background .3s;
+}
+
+button.rounded-button:hover::before {
+    background-position: 100% 0;
+    
+}
+
+body {
+    background: #1d1d1d;
+    padding: 2rem;
+}	
 
 </html>
