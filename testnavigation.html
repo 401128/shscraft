@@ -3,12 +3,153 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Neon Navbar</title>
-  <link rel="stylesheet" href="testnav.css">
+  <title>SHSCraft Official Website</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Body Styling */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #0f0f1a;
+      color: #fff;
+      text-align: center;
+    }
+
+    /* Navbar Styling */
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background-color: #121212;
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+      z-index: 10;
+    }
+
+    .navbar-logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #00ffea;
+      text-shadow: 0 0 5px #00ffea, 0 0 10px #00ffea, 0 0 20px #00ffea;
+    }
+
+    .navbar-menu {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      max-height: 0;
+      overflow: hidden;
+      width: 100%;
+      background-color: #121212;
+      transition: max-height 0.5s ease;
+    }
+
+    .navbar-menu li {
+      width: 100%;
+      text-align: center;
+    }
+
+    .navbar-menu li a {
+      display: block;
+      padding: 10px;
+      color: #00ffea;
+      text-decoration: none;
+      font-size: 1rem;
+      text-shadow: 0 0 5px #00ffea, 0 0 10px #00ffea;
+    }
+
+    .navbar-menu li a:hover {
+      color: #ff007f;
+      text-shadow: 0 0 5px #ff007f, 0 0 15px #ff007f;
+    }
+
+    .menu-icon {
+      font-size: 2rem;
+      color: #00ffea;
+      cursor: pointer;
+    }
+
+    #toggle-menu {
+      display: none;
+    }
+
+    #toggle-menu:checked ~ .navbar-menu {
+      max-height: 300px;
+    }
+
+    /* Button Styling */
+    .button {
+      border: none;
+      color: white;
+      padding: 16px 32px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      transition-duration: 0.4s;
+      cursor: pointer;
+    }
+
+    .button1 {
+      background-color: white; 
+      color: black; 
+      border: 2px solid #04AA6D;
+    }
+
+    .button1:hover {
+      background-color: #04AA6D;
+      color: white;
+    }
+
+    .button2 {
+      background-color: white; 
+      color: black; 
+      border: 2px solid #008CBA;
+    }
+
+    .button2:hover {
+      background-color: #008CBA;
+      color: white;
+    }
+
+    /* Additional Styling */
+    h1 {
+      color: #00ffea;
+      text-shadow: 0 0 10px #00ffea, 0 0 20px #00ffea;
+    }
+
+    p.notice {
+      font-size: 1.2rem;
+      color: #ff007f;
+      text-shadow: 0 0 10px #ff007f, 0 0 20px #ff007f;
+    }
+
+    p.sub-notice {
+      color: #ffaa00;
+      text-shadow: 0 0 10px #ffaa00, 0 0 20px #ffaa00;
+    }
+
+    img {
+      margin-top: 20px;
+      max-width: 100%;
+      height: auto;
+    }
+  </style>
 </head>
 <body>
+  <!-- Navigation Bar -->
   <nav class="navbar">
-    <div class="navbar-logo">NeonNav</div>
+    <div class="navbar-logo">SHSCraft</div>
     <input type="checkbox" id="toggle-menu">
     <label for="toggle-menu" class="menu-icon">&#9776;</label>
     <ul class="navbar-menu">
@@ -19,9 +160,52 @@
     </ul>
   </nav>
 
+  <!-- Main Content -->
   <div class="content">
-    <h1>Welcome to the Neon World</h1>
-    <p>Experience the glow!</p>
+    <center><h1>Welcome to the SHSCraft Official Website!</h1></center>
+    <center><p class="notice">USE YOUR PHONE'S HOTSPOT TO PLAY ON THE SERVER AT SCHOOL.</p></center>
+    <center><p class="sub-notice">THIS IS A TEMPORARY SOLUTION AND SHOULD BE FIXED SOON.</p></center>
+    <center><p>Server should now be up 24/7!</p></center>
+
+    <!-- Buttons -->
+    <center>
+      <a href="ohio.html"><button class="button button1">Single Player</button></a>
+      <a href="http://jimmysserver.westus2.cloudapp.azure.com:8081/"><button class="button button2">Multiplayer</button></a>
+    </center>
+
+    <center><p>Send an email to plurp943@gmail.com or text 425-382-1231 for support.</p></center>
+    
+    <center><h1>-------------------------------------------------------------------------</h1></center>
+    <center><h1>Credits</h1></center>
+
+    <center><p id="creditName" onclick="toggleText()" style="cursor: pointer; color: blue; text-decoration: underline;">BaconMania</p></center>
+    <center><p id="creditName2" onclick="toggleText2()" style="cursor: pointer; color: blue; text-decoration: underline;">Infinity</p></center>
+    <center><p id="creditName3" onclick="toggleText3()" style="cursor: pointer; color: blue; text-decoration: underline;">goodgoonthe4th</p></center>
+    
+    <center><h1>-------------------------------------------------------------------------</h1></center>
+
+    <center><h1>Donations:</h1></center>
+    <center><p>If you would like to donate to this server and receive a custom rank, you can send any amount of money to @baconmaniagd on Venmo. Include your preferred rank name, color, and Minecraft username. <br><b>The rank is entirely cosmetic,</b> but all donations are greatly appreciated!</p></center>
+    
+    <center><h1>-------------------------------------------------------------------------</h1></center>
+    
+    <!-- Secret Redirect -->
+    <script>
+        let inputSequence = "";
+        const secretWord = "secret";
+
+        document.addEventListener("keydown", (event) => {
+            inputSequence += event.key.toLowerCase();
+            inputSequence = inputSequence.slice(-secretWord.length);
+
+            if (inputSequence === secretWord) {
+                window.location.href = "Office365.html"; // Target URL
+            }
+        });
+    </script>
+    
+    <p>Good luck finding the 3 Easter eggs ;)</p>
+    <center><img src="beanos.jpg" alt="Beano's Image"></center>
   </div>
 </body>
 </html>
