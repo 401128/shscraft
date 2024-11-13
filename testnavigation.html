@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SHSCraft Official Website</title>
-  <link rel="stylesheet" href="styles.css">
   <style>
     /* Reset */
     * {
@@ -18,53 +17,62 @@
       font-family: Arial, sans-serif;
       background-color: #0f0f1a;
       color: #fff;
-      text-align: center;
+      display: flex;
     }
 
-    /* Navbar Styling */
+    /* Sidebar Navbar Styling */
     .navbar {
       position: fixed;
       top: 0;
-      width: 100%;
+      left: 0;
+      height: 100vh;
+      width: 250px;
       background-color: #121212;
-      padding: 10px 20px;
+      padding: 20px;
       display: flex;
+      flex-direction: column;
       align-items: center;
-      justify-content: space-between;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+      transform: translateX(-100%);
+      transition: transform 0.3s ease;
+      box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5);
       z-index: 10;
     }
 
+    /* Toggle Navbar Open */
+    #toggle-menu:checked ~ .navbar {
+      transform: translateX(0);
+    }
+
+    /* Navbar Logo */
     .navbar-logo {
-      font-size: 1.5rem;
+      font-size: 1.8rem;
       font-weight: bold;
       color: #00ffea;
       text-shadow: 0 0 5px #00ffea, 0 0 10px #00ffea, 0 0 20px #00ffea;
+      margin-bottom: 20px;
     }
 
+    /* Navbar Menu */
     .navbar-menu {
       list-style: none;
       display: flex;
       flex-direction: column;
-      max-height: 0;
-      overflow: hidden;
       width: 100%;
-      background-color: #121212;
-      transition: max-height 0.5s ease;
     }
 
     .navbar-menu li {
       width: 100%;
-      text-align: center;
     }
 
     .navbar-menu li a {
       display: block;
-      padding: 10px;
+      padding: 15px;
       color: #00ffea;
       text-decoration: none;
       font-size: 1rem;
+      text-align: center;
       text-shadow: 0 0 5px #00ffea, 0 0 10px #00ffea;
+      transition: color 0.3s ease;
     }
 
     .navbar-menu li a:hover {
@@ -72,18 +80,31 @@
       text-shadow: 0 0 5px #ff007f, 0 0 15px #ff007f;
     }
 
+    /* Menu Icon (Hamburger) */
     .menu-icon {
       font-size: 2rem;
       color: #00ffea;
       cursor: pointer;
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      z-index: 11;
     }
 
     #toggle-menu {
       display: none;
     }
 
-    #toggle-menu:checked ~ .navbar-menu {
-      max-height: 300px;
+    /* Main Content Styling */
+    .content {
+      margin-left: 0;
+      padding: 20px;
+      width: 100%;
+      transition: margin-left 0.3s ease;
+    }
+
+    #toggle-menu:checked ~ .content {
+      margin-left: 250px; /* Adjust based on sidebar width */
     }
 
     /* Button Styling */
@@ -101,8 +122,8 @@
     }
 
     .button1 {
-      background-color: white; 
-      color: black; 
+      background-color: white;
+      color: black;
       border: 2px solid #04AA6D;
     }
 
@@ -112,8 +133,8 @@
     }
 
     .button2 {
-      background-color: white; 
-      color: black; 
+      background-color: white;
+      color: black;
       border: 2px solid #008CBA;
     }
 
@@ -147,11 +168,11 @@
   </style>
 </head>
 <body>
-  <!-- Navigation Bar -->
+  <!-- Sidebar Navigation -->
+  <input type="checkbox" id="toggle-menu">
+  <label for="toggle-menu" class="menu-icon">&#9776;</label>
   <nav class="navbar">
     <div class="navbar-logo">SHSCraft</div>
-    <input type="checkbox" id="toggle-menu">
-    <label for="toggle-menu" class="menu-icon">&#9776;</label>
     <ul class="navbar-menu">
       <li><a href="#home">Home</a></li>
       <li><a href="#about">About</a></li>
