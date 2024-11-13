@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ban Appeals - SHSCraft</title>
+  <style>
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Body Styling */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #0f0f1a;
+      color: #fff;
+      display: flex;
+    }
+
+    /* Sidebar Navbar Styling */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      width: 250px;
+      background-color: #121212;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transform: translateX(-100%);
+      transition: transform 0.3s ease;
+      box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5);
+      z-index: 10;
+    }
+
+    /* Toggle Navbar Open */
+    #toggle-menu:checked ~ .navbar {
+      transform: translateX(0);
+    }
+
+    /* Navbar Logo */
+    .navbar-logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: #00ffea;
+      text-shadow: 0 0 5px #00ffea, 0 0 10px #00ffea, 0 0 20px #00ffea;
+      margin-bottom: 20px;
+    }
+
+    /* Navbar Menu */
+    .navbar-menu {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+    }
+
+    .navbar-menu li {
+      width: 100%;
+    }
+
+    .navbar-menu li a {
+      display: block;
+      padding: 15px;
+      color: #00ffea;
+      text-decoration: none;
+      font-size: 1rem;
+      text-align: center;
+      text-shadow: 0 0 5px #00ffea, 0 0 10px #00ffea;
+      transition: color 0.3s ease;
+    }
+
+    .navbar-menu li a:hover {
+      color: #ff007f;
+      text-shadow: 0 0 5px #ff007f, 0 0 15px #ff007f;
+    }
+
+    /* Active Link Styling */
+    .navbar-menu .active {
+      color: #ffaa00;
+      text-shadow: 0 0 10px #ffaa00, 0 0 20px #ffaa00;
+    }
+
+    /* Menu Icon (Hamburger) */
+    .menu-icon {
+      font-size: 2rem;
+      color: #00ffea;
+      cursor: pointer;
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      z-index: 11;
+    }
+
+    #toggle-menu {
+      display: none;
+    }
+
+    /* Main Content Styling */
+    .content {
+      margin-left: 0;
+      padding: 20px;
+      width: 100%;
+      transition: margin-left 0.3s ease;
+    }
+
+    #toggle-menu:checked ~ .content {
+      margin-left: 250px;
+    }
+
+    /* Centering iframe */
+    .iframe-container {
+      display: flex;
+      justify-content: center;
+      padding-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Sidebar Navigation -->
+  <input type="checkbox" id="toggle-menu">
+  <label for="toggle-menu" class="menu-icon">&#9776;</label>
+  <nav class="navbar">
+    <div class="navbar-logo">SHSCraft</div>
+    <ul class="navbar-menu">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="Guide.html">Lag Fix Guide</a></li>
+      <li><a href="banappeals.html" class="active">Ban Appeals</a></li>
+      <li><a href="contact.html">Contact Us</a></li>
+      <li><a href="Rules.html">Rules</a></li>
+      <li><a href="chatroom.html">Chat Room</a></li>
+      <li><a href="adminsignin.html">Web Admin Sign In</a></li>
+    </ul>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="content">
+    <h1 style="text-align: center; color: #00ffea; text-shadow: 0 0 10px #00ffea, 0 0 20px #00ffea;">Ban Appeals</h1>
+    <div class="iframe-container">
+      <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeeJlzF81FC0RJyEKb3xvO7gwPf-yhPm0vba2f564Xoj7t-RA/viewform?embedded=true" width="640" height="1197" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+    </div>
+  </div>
+</body>
+</html>
