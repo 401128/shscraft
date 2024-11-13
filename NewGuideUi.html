@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lag Fix Guide - SHSCraft</title>
+  <style>
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Body Styling */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #0f0f1a;
+      color: #fff;
+      display: flex;
+    }
+
+    /* Sidebar Navbar Styling */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      width: 250px;
+      background-color: #121212;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transform: translateX(-100%);
+      transition: transform 0.3s ease;
+      box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5);
+      z-index: 10;
+    }
+
+    /* Toggle Navbar Open */
+    #toggle-menu:checked ~ .navbar {
+      transform: translateX(0);
+    }
+
+    /* Navbar Logo */
+    .navbar-logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: #00ffea;
+      text-shadow: 0 0 5px #00ffea, 0 0 10px #00ffea, 0 0 20px #00ffea;
+      margin-bottom: 20px;
+    }
+
+    /* Navbar Menu */
+    .navbar-menu {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+    }
+
+    .navbar-menu li {
+      width: 100%;
+    }
+
+    .navbar-menu li a {
+      display: block;
+      padding: 15px;
+      color: #00ffea;
+      text-decoration: none;
+      font-size: 1rem;
+      text-align: center;
+      text-shadow: 0 0 5px #00ffea, 0 0 10px #00ffea;
+      transition: color 0.3s ease;
+    }
+
+    .navbar-menu li a:hover {
+      color: #ff007f;
+      text-shadow: 0 0 5px #ff007f, 0 0 15px #ff007f;
+    }
+
+    /* Active Link Styling */
+    .navbar-menu .active {
+      color: #ffaa00;
+      text-shadow: 0 0 10px #ffaa00, 0 0 20px #ffaa00;
+    }
+
+    /* Menu Icon (Hamburger) */
+    .menu-icon {
+      font-size: 2rem;
+      color: #00ffea;
+      cursor: pointer;
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      z-index: 11;
+    }
+
+    #toggle-menu {
+      display: none;
+    }
+
+    /* Main Content Styling */
+    .content {
+      margin-left: 0;
+      padding: 20px;
+      width: 100%;
+      transition: margin-left 0.3s ease;
+    }
+
+    #toggle-menu:checked ~ .content {
+      margin-left: 250px;
+    }
+
+    /* Page Specific Styles */
+    h1 {
+      color: #00ffea;
+      text-shadow: 0 0 10px #00ffea, 0 0 20px #00ffea;
+      text-align: center;
+    }
+
+    p, b {
+      font-size: 1.2rem;
+      text-align: center;
+    }
+
+    /* Reveal Text Styling */
+    #reveal {
+      display: none;
+    }
+
+    input[type="checkbox"] {
+      display: none;
+    }
+
+    label {
+      cursor: pointer;
+      color: #00ffea;
+      text-decoration: underline;
+    }
+
+    input[type="checkbox"]:checked + #reveal {
+      display: block;
+      color: #00ffea;
+      padding: 10px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Sidebar Navigation -->
+  <input type="checkbox" id="toggle-menu">
+  <label for="toggle-menu" class="menu-icon">&#9776;</label>
+  <nav class="navbar">
+    <div class="navbar-logo">SHSCraft</div>
+    <ul class="navbar-menu">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="Guide.html" class="active">Lag Fix Guide</a></li>
+      <li><a href="banappeals.html">Ban Appeals</a></li>
+      <li><a href="contact.html">Contact Us</a></li>
+      <li><a href="Rules.html">Rules</a></li>
+      <li><a href="chatroom.html">Chat Room</a></li>
+      <li><a href="adminsignin.html">Web Admin Sign In</a></li>
+    </ul>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="content">
+    <h1>Lag Fix Guide</h1>
+    <p>Press the <code>`</code> key on your keyboard, then click <b>Options</b>, then <b>Video Settings</b>.</p>
+    <p><b>Change your settings to these:</b></p>
+    <p><b>Render Distance, Max Framerate, FXAA Antialiasing, and Fog are the most important. DO NOT SET YOUR RENDER DISTANCE TO ANYTHING HIGHER THAN 2.</b></p>
+    
+    <center><img src="videoSettings.png" alt="Image" style="width: auto; height: 50%; margin-top: 15px;"></center>
+
+    <p>Refer back to this guide if your game starts lagging again. The settings should only be reset if you have to retype your username when opening the site.</p>
+    
+    <label for="trigger">Technical Explanation</label>
+    <input type="checkbox" id="trigger">
+    <div id="reveal">
+      <p>These computers have incredibly poor CPUs, 2GB of RAM, and lack a GPU. It's a miracle that Minecraft, even an older optimized version, runs at all on these devices.</p>
+      <p>Reducing the render distance to 1 greatly improves performance. Fog and FXAA Antialiasing are GPU-intensive, so disabling them also boosts performance. Setting Max Framerate to unlimited increases FPS because Minecraft doesn't cap the framerate when this option is set.</p>
+      <p>If settings reset, it's likely due to using a different computer, clearing your browser’s cookies/cache, or server migration to a new website. Good luck!</p>
+    </div>
+  </div>
+</body>
+</html>
