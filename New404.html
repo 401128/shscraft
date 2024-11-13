@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Page Not Found</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(45deg, #111, #333, #555);
+            background-size: 400% 400%;
+            animation: gradientFlow 10s ease infinite;
+            font-family: 'Orbitron', sans-serif;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+
+        @keyframes gradientFlow {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* Sliding 404 Text */
+        .sliding-text {
+            font-size: 8rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #ff00ff;
+            text-shadow: 0 0 15px #ff00ff, 0 0 25px #ff00ff, 0 0 35px #ff00ff;
+            letter-spacing: 10px;
+            animation: slideIn 3s ease-out forwards;
+            position: relative;
+            z-index: 1;
+        }
+
+        @keyframes slideIn {
+            0% {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+            100% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        /* Glitching Hover Effect for Button */
+        .button {
+            display: inline-block;
+            padding: 15px 30px;
+            font-size: 1.5rem;
+            color: #fff;
+            background: transparent;
+            border: 2px solid #ff00ff;
+            border-radius: 50px;
+            text-decoration: none;
+            cursor: pointer;
+            position: relative;
+            z-index: 2;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .button:hover {
+            color: #ff00ff;
+            border-color: #ff00ff;
+            box-shadow: 0 0 15px #ff00ff, 0 0 30px #ff00ff, 0 0 50px #ff00ff;
+            animation: glitchEffect 1s infinite;
+        }
+
+        @keyframes glitchEffect {
+            0% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+            25% {
+                transform: translateX(5px);
+                opacity: 0.8;
+            }
+            50% {
+                transform: translateX(-5px);
+                opacity: 1;
+            }
+            75% {
+                transform: translateX(5px);
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        /* Neon Glowing Lines Around Content */
+        .neon-lines {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            border: 1px solid #ff00ff;
+            border-radius: 10px;
+            z-index: 0;
+            animation: neonGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes neonGlow {
+            0% {
+                box-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff, 0 0 30px #ff00ff;
+            }
+            50% {
+                box-shadow: 0 0 20px #ff00ff, 0 0 40px #ff00ff, 0 0 60px #ff00ff;
+            }
+            100% {
+                box-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff, 0 0 30px #ff00ff;
+            }
+        }
+
+        /* Subheading Styling */
+        .subheading {
+            font-size: 1.5rem;
+            color: #fff;
+            text-align: center;
+            opacity: 0.8;
+            z-index: 2;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Neon Glowing Lines Background -->
+    <div class="neon-lines"></div>
+
+    <!-- Sliding "404" Text -->
+    <div class="sliding-text">404</div>
+
+    <!-- Subheading -->
+    <p class="subheading">Page Not Found</p>
+
+    <!-- Hovering Glitch Button -->
+    <a href="index.html" class="button">Go Home</a>
+
+</body>
+</html>
