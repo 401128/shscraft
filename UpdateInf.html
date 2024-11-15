@@ -1,130 +1,279 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Website Updates</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Arial', sans-serif;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SHSCraft Official Website</title>
+  <style>
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            background: #0f0f1a;
-            color: #f5f5f5;
-        }
+    /* Body Styling */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #0f0f1a;
+      color: #fff;
+      display: flex;
+    }
 
-        .container {
-            width: 80%;
-            max-width: 800px;
-            background: #141428;
-            border-radius: 10px;
-            padding: 30px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-            overflow: hidden;
-        }
+    /* Sidebar Navbar Styling */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      width: 250px;
+      background-color: #121212;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transform: translateX(-100%);
+      transition: transform 0.3s ease;
+      box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5);
+      z-index: 10;
+    }
 
-        .heading h1 {
-            font-size: 2.2rem;
-            font-weight: bold;
-            text-align: center;
-            margin-bottom: 20px;
-            color: #6dcff6;
-            animation: fadeInUp 0.8s ease both;
-        }
+    /* Toggle Navbar Open */
+    #toggle-menu:checked ~ .navbar {
+      transform: translateX(0);
+    }
 
-        .updates {
-            height: 300px;
-            overflow-y: scroll;
-            scrollbar-width: thin;
-            scrollbar-color: #6dcff6 #141428;
-        }
+    /* Navbar Logo */
+    .navbar-logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: #00ffea;
+      text-shadow: 0 0 5px #00ffea, 0 0 10px #00ffea, 0 0 20px #00ffea;
+      margin-bottom: 20px;
+    }
 
-        .updates::-webkit-scrollbar {
-            width: 8px;
-        }
+    /* Navbar Menu */
+    .navbar-menu {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+    }
 
-        .updates::-webkit-scrollbar-track {
-            background: #141428;
-        }
+    .navbar-menu li {
+      width: 100%;
+    }
 
-        .updates::-webkit-scrollbar-thumb {
-            background-color: #6dcff6;
-            border-radius: 10px;
-        }
+    .navbar-menu li a {
+      display: block;
+      padding: 15px;
+      color: #00ffea;
+      text-decoration: none;
+      font-size: 1rem;
+      text-align: center;
+      text-shadow: 0 0 5px #00ffea, 0 0 10px #00ffea;
+      transition: color 0.3s ease;
+    }
 
-        .update {
-            padding: 15px;
-            background: #1a1a33;
-            border-radius: 8px;
-            margin-bottom: 15px;
-            transition: transform 0.3s ease-in-out;
-            animation: fadeInUp 0.5s ease both;
-        }
+    .navbar-menu li a:hover {
+      color: #ff007f;
+      text-shadow: 0 0 5px #ff007f, 0 0 15px #ff007f;
+    }
 
-        .update h2 {
-            font-size: 1.5rem;
-            color: #f5f5f5;
-            margin-bottom: 8px;
-        }
+    /* Menu Icon (Hamburger) */
+    .menu-icon {
+      font-size: 2rem;
+      color: #00ffea;
+      cursor: pointer;
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      z-index: 11;
+    }
 
-        .update p {
-            font-size: 1rem;
-            color: #b3b3b3;
-        }
+    #toggle-menu {
+      display: none;
+    }
 
-        .update:hover {
-            transform: scale(1.02);
-            background: #282845;
-        }
+    /* Main Content Styling */
+    .content {
+      margin-left: 0;
+      padding: 20px;
+      width: 100%;
+      transition: margin-left 0.3s ease;
+    }
 
-        .update:hover h2, .update:hover p {
-            color: #e0e0e0;
-        }
+    #toggle-menu:checked ~ .content {
+      margin-left: 250px;
+    }
 
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-    </style>
+    /* Button Styling */
+    .button {
+      border: none;
+      color: white;
+      padding: 16px 32px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      transition-duration: 0.4s;
+      cursor: pointer;
+    }
+
+    .button1 {
+      background-color: white;
+      color: black;
+      border: 2px solid #04AA6D;
+    }
+
+    .button1:hover {
+      background-color: #04AA6D;
+      color: white;
+    }
+
+    .button2 {
+      background-color: white;
+      color: black;
+      border: 2px solid #008CBA;
+    }
+
+    .button2:hover {
+      background-color: #008CBA;
+      color: white;
+    }
+
+    /* Additional Styling */
+    h1 {
+      color: #00ffea;
+      text-shadow: 0 0 10px #00ffea, 0 0 20px #00ffea;
+    }
+
+    p.notice {
+      font-size: 1.2rem;
+      color: #ff007f;
+      text-shadow: 0 0 10px #ff007f, 0 0 20px #ff007f;
+    }
+
+    /* Website Updates Styling */
+    .updates-container {
+      max-width: 800px;
+      margin: 20px auto;
+      background: #141428;
+      border-radius: 10px;
+      padding: 30px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+      color: #f5f5f5;
+    }
+
+    .updates-container h1 {
+      font-size: 2.2rem;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 20px;
+      color: #6dcff6;
+    }
+
+    .updates {
+      height: 300px;
+      overflow-y: scroll;
+      scrollbar-width: thin;
+      scrollbar-color: #6dcff6 #141428;
+    }
+
+    .updates::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    .updates::-webkit-scrollbar-track {
+      background: #141428;
+    }
+
+    .updates::-webkit-scrollbar-thumb {
+      background-color: #6dcff6;
+      border-radius: 10px;
+    }
+
+    .update {
+      padding: 15px;
+      background: #1a1a33;
+      border-radius: 8px;
+      margin-bottom: 15px;
+      transition: transform 0.3s ease-in-out;
+      animation: fadeInUp 0.5s ease both;
+    }
+
+    .update h2 {
+      font-size: 1.5rem;
+      color: #f5f5f5;
+      margin-bottom: 8px;
+    }
+
+    .update p {
+      font-size: 1rem;
+      color: #b3b3b3;
+    }
+
+    .update:hover {
+      transform: scale(1.02);
+      background: #282845;
+    }
+
+    .update:hover h2, .update:hover p {
+      color: #e0e0e0;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <div class="heading">
-            <h1>Website Updates</h1>
+  <!-- Sidebar Navigation -->
+  <input type="checkbox" id="toggle-menu">
+  <label for="toggle-menu" class="menu-icon">&#9776;</label>
+  <nav class="navbar">
+    <div class="navbar-logo">SHSCraft</div>
+    <ul class="navbar-menu">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="Guide.html">Lag Fix Guide</a></li>
+      <li><a href="banappeals.html">Ban Appeals</a></li>
+      <li><a href="#contact">Contact Us (WIP)</a></li>
+      <li><a href="Rules.html">Rules</a></li>
+      <li><a href="403.html">Web Admin Sign In</a></li>
+    </ul>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="content">
+    <div class="updates-container">
+      <h1>Website Updates</h1>
+      <div class="updates">
+        <div class="update">
+          <h2>Version 1.3.5 - New Features</h2>
+          <p>Added new user profile customization options, enhanced dashboard speed, and updated security protocols.</p>
         </div>
-        <div class="updates">
-            <div class="update">
-                <h2>Version 1.3.5 - New Features</h2>
-                <p>Added new user profile customization options, enhanced dashboard speed, and updated security protocols.</p>
-            </div>
-            <div class="update">
-                <h2>Version 1.3.0 - UI Improvements</h2>
-                <p>Redesigned homepage, improved navigation bar, and updated color schemes for a smoother experience.</p>
-            </div>
-            <div class="update">
-                <h2>Version 1.2.7 - Bug Fixes</h2>
-                <p>Resolved login issues on mobile devices, fixed profile image upload, and optimized loading times.</p>
-            </div>
-            <div class="update">
-                <h2>Version 1.2.3 - Performance Enhancements</h2>
-                <p>Increased server response time, implemented caching improvements, and enhanced data processing speed.</p>
-            </div>
+        <div class="update">
+          <h2>Version 1.3.0 - UI Improvements</h2>
+          <p>Redesigned homepage, improved navigation bar, and updated color schemes for a smoother experience.</p>
         </div>
+        <div class="update">
+          <h2>Version 1.2.7 - Bug Fixes</h2>
+          <p>Resolved login issues on mobile devices, fixed profile image upload, and optimized loading times.</p>
+        </div>
+        <div class="update">
+          <h2>Version 1.2.3 - Performance Enhancements</h2>
+          <p>Increased server response time, implemented caching improvements, and enhanced data processing speed.</p>
+        </div>
+      </div>
     </div>
+  </div>
 </body>
 </html>
-
