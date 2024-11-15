@@ -167,6 +167,46 @@
       height: auto;
     }
   </style>
+
+
+   <script>
+
+          // Toggle text function for BaconMania / Evan Carlston
+          function toggleText() {
+              var creditElement = document.getElementById("creditName");
+              if (creditElement.innerHTML === "BaconMania") {
+                  creditElement.innerHTML = "Evan Carlston";
+              } else {
+                  creditElement.innerHTML = "BaconMania";
+              }
+          }
+
+          // Toggle text function for Infinity / Volodimir Nesterchuck
+          function toggleText2() {
+              var creditElement2 = document.getElementById("creditName2");
+              if (creditElement2.innerHTML === "Infinity") {
+                  creditElement2.innerHTML = "Volodimir Nesterchuck";
+              } else {
+                  creditElement2.innerHTML = "Infinity";
+              }
+          }
+		  
+		  // Toggle text function for goodgoonthe4th / Aleksei Stoyanov
+          function toggleText3() {
+              var creditElement3 = document.getElementById("creditName3");
+              if (creditElement3.innerHTML === "goodgoonthe4th") {
+                  creditElement3.innerHTML = "Aleksei Stoyanov";
+              } else {
+                  creditElement3.innerHTML = "goodgoonthe4th";
+              }
+          }
+
+          // Password check for admin
+          function check(){
+              var passwd = document.getElementById("password").value;
+              return passwd === "AdminLogin";
+          }
+      </script>
 </head>
 <body>
   <!-- Sidebar Navigation -->
@@ -202,10 +242,15 @@
     <center><h1>-------------------------------------------------------------------------</h1></center>
     <center><h1>Credits:</h1></center>
 
-    <center><p id="creditName" onclick="toggleText()" style="cursor: pointer; color: blue; text-decoration: underline;">BaconMania</p></center>
-    <center><p id="creditName2" onclick="toggleText2()" style="cursor: pointer; color: blue; text-decoration: underline;">Infinity</p></center>
-    <center><p id="creditName3" onclick="toggleText3()" style="cursor: pointer; color: blue; text-decoration: underline;">goodgoonthe4th</p></center>
-    
+     <center><b><p id="creditName" onclick="toggleText()" style="cursor: pointer; color: blue; text-decoration: underline;">BaconMania</p></b>Founder of the project</center>
+
+      <!-- Toggle text for Infinity / Volodimir Nesterchuck -->
+      <center><b><p id="creditName2" onclick="toggleText2()" style="cursor: pointer; color: blue; text-decoration: underline;">Infinity</p></b>Website designer</center>
+	  
+	  <!-- Toggle text for Infinity / Aleksei Stoyanov -->
+      <center><b><p id="creditName3" onclick="toggleText3()" style="cursor: pointer; color: blue; text-decoration: underline;">goodgoonthe4th</p></b>Hosting the server</center>
+	  
+<center><h1>-------------------------------------------------------------------------</h1>
     <center><h1>-------------------------------------------------------------------------</h1></center>
 
     <center><h1>Donations:</h1></center>
