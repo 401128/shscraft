@@ -1,0 +1,548 @@
+<!DOCTYPE html> 
+
+<html lang="en"> 
+
+<head> 
+
+  <meta charset="UTF-8"> 
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+
+  <title>SHSCraft Official Website - Updates</title> 
+
+  <style> 
+
+    /* Reset */ 
+
+    * { 
+
+      margin: 0; 
+
+      padding: 0; 
+
+      box-sizing: border-box; 
+
+    } 
+
+ 
+
+    /* Body Styling */ 
+
+    body { 
+
+      font-family: Arial, sans-serif; 
+
+      background-color: #0f0f1a; 
+
+      color: #fff; 
+
+      overflow: hidden; 
+
+      display: flex; 
+
+    } 
+
+ 
+
+    /* Sidebar Navbar Styling */ 
+
+    .navbar { 
+
+      position: fixed; 
+
+      top: 0; 
+
+      left: 0; 
+
+      height: 100vh; 
+
+      width: 250px; 
+
+      background-color: #121212; 
+
+      padding: 20px; 
+
+      display: flex; 
+
+      flex-direction: column; 
+
+      align-items: center; 
+
+      transform: translateX(-100%); 
+
+      transition: transform 0.3s ease; 
+
+      box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5); 
+
+      z-index: 10; 
+
+    } 
+
+ 
+
+    /* Toggle Navbar Open */ 
+
+    #toggle-menu:checked ~ .navbar { 
+
+      transform: translateX(0); 
+
+    } 
+
+ 
+
+    /* Navbar Logo */ 
+
+    .navbar-logo { 
+
+      font-size: 1.8rem; 
+
+      font-weight: bold; 
+
+      color: #00ffea; 
+
+      text-shadow: 0 0 5px #00ffea, 0 0 10px #00ffea, 0 0 20px #00ffea; 
+
+      margin-bottom: 20px; 
+
+    } 
+
+ 
+
+    /* Navbar Menu */ 
+
+    .navbar-menu { 
+
+      list-style: none; 
+
+      display: flex; 
+
+      flex-direction: column; 
+
+      width: 100%; 
+
+    } 
+
+ 
+
+    .navbar-menu li { 
+
+      width: 100%; 
+
+    } 
+
+ 
+
+    .navbar-menu li a { 
+
+      display: block; 
+
+      padding: 15px; 
+
+      color: #00ffea; 
+
+      text-decoration: none; 
+
+      font-size: 1rem; 
+
+      text-align: center; 
+
+      text-shadow: 0 0 5px #00ffea, 0 0 10px #00ffea; 
+
+      transition: color 0.3s ease; 
+
+    } 
+
+ 
+
+    .navbar-menu li a:hover { 
+
+      color: #ff007f; 
+
+      text-shadow: 0 0 5px #ff007f, 0 0 15px #ff007f; 
+
+    } 
+
+ 
+
+    /* Menu Icon (Hamburger) */ 
+
+    .menu-icon { 
+
+      font-size: 2rem; 
+
+      color: #00ffea; 
+
+      cursor: pointer; 
+
+      position: absolute; 
+
+      top: 20px; 
+
+      left: 20px; 
+
+      z-index: 11; 
+
+    } 
+
+ 
+
+    #toggle-menu { 
+
+      display: none; 
+
+    } 
+
+ 
+
+    /* Main Content Styling */ 
+
+    .content { 
+
+      margin-left: 0; 
+
+      padding: 60px 20px 20px 20px; 
+
+      width: 100%; 
+
+      transition: margin-left 0.3s ease; 
+
+    } 
+
+ 
+
+    #toggle-menu:checked ~ .content { 
+
+      margin-left: 250px; 
+
+    } 
+
+ 
+
+    /* Updates Section */ 
+
+    .updates { 
+
+      margin-top: 30px; 
+
+      position: relative; 
+
+    } 
+
+ 
+
+    .update-item { 
+
+      background-color: #1e1e2e; 
+
+      padding: 15px; 
+
+      margin-bottom: 20px; 
+
+      border-radius: 8px; 
+
+      box-shadow: 0 0 15px rgba(0, 255, 234, 0.3); 
+
+      transform: scale(1); 
+
+      transition: transform 0.3s ease; 
+
+      animation: fadeInUp 0.5s ease; 
+
+    } 
+
+ 
+
+    .update-item:hover { 
+
+      transform: scale(1.05); 
+
+    } 
+
+ 
+
+    @keyframes fadeInUp { 
+
+      0% { 
+
+        opacity: 0; 
+
+        transform: translateY(20px); 
+
+      } 
+
+      100% { 
+
+        opacity: 1; 
+
+        transform: translateY(0); 
+
+      } 
+
+    } 
+
+ 
+
+    .update-item h2 { 
+
+      color: #00ffea; 
+
+      text-shadow: 0 0 10px #00ffea; 
+
+      margin-bottom: 5px; 
+
+    } 
+
+ 
+
+    .update-item p { 
+
+      color: #ffaa00; 
+
+      text-shadow: 0 0 5px #ffaa00; 
+
+    } 
+
+ 
+
+    /* Particles Background */ 
+
+    .particles { 
+
+      position: fixed; 
+
+      top: 0; 
+
+      left: 0; 
+
+      width: 100vw; 
+
+      height: 100vh; 
+
+      overflow: hidden; 
+
+      z-index: 1; 
+
+      pointer-events: none; 
+
+    } 
+
+ 
+
+    .particle { 
+
+      position: absolute; 
+
+      width: 4px; 
+
+      height: 4px; 
+
+      background-color: #00ffea; 
+
+      border-radius: 50%; 
+
+      opacity: 0.7; 
+
+      animation: floatUp 6s linear infinite; 
+
+    } 
+
+ 
+
+    @keyframes floatUp { 
+
+      from { 
+
+        transform: translateY(100vh); 
+
+        opacity: 0.2; 
+
+      } 
+
+      to { 
+
+        transform: translateY(-100vh); 
+
+        opacity: 0.8; 
+
+      } 
+
+    } 
+
+ 
+
+    /* Header Styling */ 
+
+    h1 { 
+
+      color: #00ffea; 
+
+      text-shadow: 0 0 10px #00ffea, 0 0 20px #00ffea; 
+
+      margin-top: 40px; 
+
+    } 
+
+  </style> 
+
+</head> 
+
+<body> 
+
+  <!-- Sidebar Navigation --> 
+
+  <input type="checkbox" id="toggle-menu"> 
+
+  <label for="toggle-menu" class="menu-icon">&#9776;</label> 
+
+  <nav class="navbar"> 
+
+    <div class="navbar-logo">SHSCraft</div> 
+
+    <ul class="navbar-menu"> 
+
+      <li><a href="index.html">Home</a></li> 
+
+      <li><a href="Guide.html">Lag Fix Guide</a></li> 
+
+      <li><a href="banappeals.html">Ban Appeals</a></li> 
+
+      <li><a href="#contact">Contact Us (WIP)</a></li> 
+
+      <li><a href="Rules.html">Rules</a></li> 
+
+      <li><a href="403.html">Web Admin Sign In</a></li> 
+
+      <li><a href="updates.html">Updates</a></li> 
+
+    </ul> 
+
+  </nav> 
+
+ 
+
+  <!-- Particles Background --> 
+
+  <div class="particles"> 
+
+    <!-- JavaScript will generate particles here --> 
+
+  </div> 
+
+ 
+
+  <!-- Main Content --> 
+
+  <div class="content"> 
+
+    <h1>Website Updates</h1> 
+
+    <div class="updates"> 
+
+      <div class="update-item"> 
+
+        <h2>Update 1 - New Features</h2> 
+
+        <p>We've added a new feature to enhance user experience. Enjoy smoother navigation and an improved interface!</p> 
+
+      </div> 
+
+      <div class="update-item"> 
+
+        <h2>Update 2 - Bug Fixes</h2> 
+
+        <p>Fixed minor bugs reported by users. Thanks for the feedback!</p> 
+
+      </div> 
+
+      <div class="update-item"> 
+
+        <h2>Update 3 - Coming Soon</h2> 
+
+        <p>Stay tuned for new features and improvements in the upcoming weeks.</p> 
+
+      </div> 
+   <div class="update-item"> 
+
+        <h2>Update 3 - Coming Soon</h2> 
+
+        <p>Stay tuned for new features and improvements in the upcoming weeks.</p> 
+
+      </div> 
+      <div class="update-item"> 
+
+        <h2>Update 3 - Coming Soon</h2> 
+
+        <p>Stay tuned for new features and improvements in the upcoming weeks.</p> 
+
+      </div> 
+      <div class="update-item"> 
+
+        <h2>Update 3 - Coming Soon</h2> 
+
+        <p>Stay tuned for new features and improvements in the upcoming weeks.</p> 
+
+      </div> 
+      <div class="update-item"> 
+
+        <h2>Update 3 - Coming Soon</h2> 
+
+        <p>Stay tuned for new features and improvements in the upcoming weeks.</p> 
+
+      </div> 
+      <div class="update-item"> 
+
+        <h2>Update 3 - Coming Soon</h2> 
+
+        <p>Stay tuned for new features and improvements in the upcoming weeks.</p> 
+
+      </div> 
+      <div class="update-item"> 
+
+        <h2>Update 3 - Coming Soon</h2> 
+
+        <p>Stay tuned for new features and improvements in the upcoming weeks.</p> 
+
+      </div> 
+      <div class="update-item"> 
+
+        <h2>Update 3 - Coming Soon</h2> 
+
+        <p>Stay tuned for new features and improvements in the upcoming weeks.</p> 
+
+      </div> 
+
+    </div> 
+
+  </div> 
+
+ 
+
+  <script> 
+
+    // Generate particles 
+
+    const particlesContainer = document.querySelector('.particles'); 
+
+    const numParticles = 100; 
+
+ 
+
+    for (let i = 0; i < numParticles; i++) { 
+
+      const particle = document.createElement('div'); 
+
+      particle.classList.add('particle'); 
+
+      particle.style.left = `${Math.random() * 100}vw`; 
+
+      particle.style.animationDelay = `${Math.random() * 6}s`; 
+
+      particlesContainer.appendChild(particle); 
+
+    } 
+
+  </script> 
+
+</body> 
+
+</html> 
