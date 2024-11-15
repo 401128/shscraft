@@ -14,10 +14,17 @@
 
     /* Body Styling */
     body {
-      font-family: Arial, sans-serif;
-      background-color: #0f0f1a;
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(135deg, #0f0f1a, #1c1c28);
       color: #fff;
       display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+      transition: background 0.5s ease;
     }
 
     /* Sidebar Navbar Styling */
@@ -45,10 +52,10 @@
 
     /* Navbar Logo */
     .navbar-logo {
-      font-size: 1.8rem;
+      font-size: 2rem;
       font-weight: bold;
       color: #00ffea;
-      text-shadow: 0 0 5px #00ffea, 0 0 10px #00ffea, 0 0 20px #00ffea;
+      text-shadow: 0 0 10px #00ffea, 0 0 20px #00ffea, 0 0 30px #00ffea;
       margin-bottom: 20px;
     }
 
@@ -69,26 +76,27 @@
       padding: 15px;
       color: #00ffea;
       text-decoration: none;
-      font-size: 1rem;
+      font-size: 1.2rem;
       text-align: center;
-      text-shadow: 0 0 5px #00ffea, 0 0 10px #00ffea;
-      transition: color 0.3s ease;
+      text-shadow: 0 0 10px #00ffea;
+      transition: all 0.3s ease;
     }
 
     .navbar-menu li a:hover {
       color: #ff007f;
-      text-shadow: 0 0 5px #ff007f, 0 0 15px #ff007f;
+      text-shadow: 0 0 15px #ff007f, 0 0 25px #ff007f;
+      transform: scale(1.1);
     }
 
     /* Active Link Styling */
     .navbar-menu .active {
       color: #ffaa00;
-      text-shadow: 0 0 10px #ffaa00, 0 0 20px #ffaa00;
+      text-shadow: 0 0 20px #ffaa00, 0 0 30px #ffaa00;
     }
 
     /* Menu Icon (Hamburger) */
     .menu-icon {
-      font-size: 2rem;
+      font-size: 2.5rem;
       color: #00ffea;
       cursor: pointer;
       position: absolute;
@@ -107,36 +115,101 @@
       padding: 20px;
       width: 100%;
       transition: margin-left 0.3s ease;
+      z-index: 2;
+      position: relative;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+      max-width: 1200px;
     }
 
     #toggle-menu:checked ~ .content {
       margin-left: 250px;
     }
 
-    /* Additional Styling for Rules Section */
-    h1 {
-      color: #00ffea;
-      text-shadow: 0 0 10px #00ffea, 0 0 20px #00ffea;
-      text-align: center;
+    /* Cards Container */
+    .rules-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 30px;
+      width: 100%;
+      padding: 30px;
+      box-sizing: border-box;
     }
 
-    p {
-      font-size: 1.2rem;
-      text-align: center;
+    /* Individual Card */
+    .rule-card {
+      background-color: #1a1a1a;
+      border: 2px solid #00ffea;
+      border-radius: 15px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+      overflow: hidden;
+      position: relative;
+      padding: 20px;
+      transition: all 0.3s ease;
+      transform: scale(0.9);
+      animation: fadeInUp 0.6s forwards;
+      position: relative;
+      z-index: 1;
     }
 
-    p b {
+    .rule-card:nth-child(even) {
+      animation-delay: 0.3s;
+    }
+
+    .rule-card:nth-child(odd) {
+      animation-delay: 0.6s;
+    }
+
+    /* Neon Glow on Hover */
+    .rule-card:hover {
+      transform: scale(1.05);
+      border-color: #ff007f;
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.4), 0 0 20px #ff007f, 0 0 50px #ff007f;
+    }
+
+    /* Rule Card Title */
+    .rule-card b {
       color: #ff007f;
-      text-shadow: 0 0 5px #ff007f, 0 0 15px #ff007f;
+      font-size: 1.4rem;
+      text-shadow: 0 0 10px #ff007f, 0 0 25px #ff007f;
     }
 
-    /* Easter Egg Redirect */
-    .hidden-redirect {
-      display: none;
+    /* Fade In Animation */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
+
+    /* Smooth Scroll */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* Particle Background */
+    #particles-js {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+
   </style>
 </head>
 <body>
+
+  <!-- Particle Background -->
+  <div id="particles-js"></div>
+
   <!-- Sidebar Navigation -->
   <input type="checkbox" id="toggle-menu">
   <label for="toggle-menu" class="menu-icon">&#9776;</label>
@@ -149,42 +222,107 @@
       <li><a href="contact.html">Contact Us (WIP)</a></li>
       <li><a href="Rules.html" class="active">Rules</a></li>
       <li><a href="UpdateInf.html">Update Info</a></li>
-     <!-- <li><a href="403.html">Web Admin Sign In</a></li> -->
     </ul>
   </nav>
 
   <!-- Main Content -->
   <div class="content">
     <h1>Rules</h1>
-    <p><b>No Griefing.</b> (max 24h ban.)</p>
-    <p><b>No destroying spawn & killing players at spawn.</b> (max 12h ban.)</p>
-    <p><b>Keep the chat somewhat respectful.</b> (max 12h mute.)</p>
-    <p><b>No hacked clients/cheating.</b> (minimum 24h ban, punishment will get harsher on subsequent bans.)</p>
-    <p><b>No xraying.</b> (24h ban and your inventory will be cleared.)</p>
-    <p><b>No stealing from other players.</b> (max 12h ban, and the stolen items will be returned to the player you stole from.)</p>
-    <p><b>Don't play on the server if you're in class and have schoolwork to do.</b> (max 1s ban.)</p>
-    <p><!-- Add any additional rules here --></p>
+    <div class="rules-container">
+      <!-- Rule Cards -->
+      <div class="rule-card">
+        <div>
+          <p><b>No Griefing.</b> (max 24h ban.)</p>
+        </div>
+      </div>
+
+      <div class="rule-card">
+        <div>
+          <p><b>No destroying spawn & killing players at spawn.</b> (max 12h ban.)</p>
+        </div>
+      </div>
+
+      <div class="rule-card">
+        <div>
+          <p><b>Keep the chat somewhat respectful.</b> (max 12h mute.)</p>
+        </div>
+      </div>
+
+      <div class="rule-card">
+        <div>
+          <p><b>No hacked clients/cheating.</b> (minimum 24h ban, harsher punishment for subsequent bans.)</p>
+        </div>
+      </div>
+
+      <div class="rule-card">
+        <div>
+          <p><b>No xraying.</b> (24h ban and your inventory will be cleared.)</p>
+        </div>
+      </div>
+
+      <div class="rule-card">
+        <div>
+          <p><b>No stealing from other players.</b> (max 12h ban, and the stolen items will be returned to the player you stole from.)</p>
+        </div>
+      </div>
+
+      <div class="rule-card">
+        <div>
+          <p><b>Don't play on the server if you're in class and have schoolwork to do.</b> (max 1s ban.)</p>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <!-- Secret Redirect -->
+  <!-- Particle Effect Script -->
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
   <script>
-      let inputSequence = "";
-      const secretWord = "flappy";
-
-      document.addEventListener("keydown", (event) => {
-          inputSequence += event.key.toLowerCase();
-          inputSequence = inputSequence.slice(-secretWord.length);
-
-          if (inputSequence === secretWord) {
-              window.location.href = "SpreadSheet.html";
-          }
-      });
+    particlesJS("particles-js", {
+      particles: {
+        number: {
+          value: 80,
+          density: { enable: true, value_area: 800 }
+        },
+        color: { value: "#00ffea" },
+        shape: {
+          type: "circle",
+          stroke: { width: 0, color: "#000000" },
+          polygon: { nb_sides: 5 }
+        },
+        opacity: {
+          value: 0.5,
+          random: true,
+          anim: { enable: true, speed: 1, opacity_min: 0 }
+        },
+        size: {
+          value: 3,
+          random: true
+        },
+        line_linked: {
+          enable: true,
+          distance: 150,
+          color: "#00ffea",
+          opacity: 0.4,
+          width: 1
+        },
+        move: {
+          enable: true,
+          speed: 2,
+          direction: "none",
+          random: true,
+          out_mode: "out"
+        }
+      },
+      interactivity: {
+        events: {
+          onhover: { enable: true, mode: "repulse" }
+        },
+        modes: {
+          repulse: { distance: 50, duration: 0.4 }
+        }
+      }
+    });
   </script>
+
 </body>
-  <!-- Do NOT TOUCH THIS CODE -->
-	<script>
-	    if (/Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-		    window.location.href =  "NotSupported";
-	    }
-    </script>
 </html>
