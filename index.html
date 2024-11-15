@@ -1,561 +1,291 @@
-<!DOCTYPE html> 
-
-<html lang="en"> 
-
-<head> 
-
-  <meta charset="UTF-8"> 
-
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-
-  <title>SHSCraft Official Website</title> 
-
-  <style> 
-
-    /* Reset */ 
-
-    * { 
-
-      margin: 0; 
-
-      padding: 0; 
-
-      box-sizing: border-box; 
-
-    } 
-
- 
-
-    /* Body Styling */ 
-
-    body { 
-
-      font-family: Arial, sans-serif; 
-
-      background-color: #0f0f1a; 
-
-      color: #fff; 
-
-      overflow-x: hidden; 
-
-      display: flex; 
-
-    } 
-
- 
-
-    /* Particle Background */ 
-
-    .particles { 
-
-      position: fixed; 
-
-      top: 0; 
-
-      left: 0; 
-
-      width: 100%; 
-
-      height: 100%; 
-
-      z-index: -1; 
-
-      overflow: hidden; 
-
-      pointer-events: none; 
-
-      background: radial-gradient(circle, rgba(15, 15, 26, 0.8), #0f0f1a 90%); 
-
-    } 
-
- 
-
-    .particle { 
-
-      position: absolute; 
-
-      background-color: rgba(0, 255, 234, 0.5); 
-
-      width: 6px; 
-
-      height: 6px; 
-
-      border-radius: 50%; 
-
-      animation: float 5s infinite ease-in-out; 
-
-    } 
-
- 
-
-    @keyframes float { 
-
-      0% { transform: translateY(0px); opacity: 0.5; } 
-
-      50% { transform: translateY(-50px); opacity: 1; } 
-
-      100% { transform: translateY(0px); opacity: 0.5; } 
-
-    } 
-
- 
-
-    /* Sidebar Navbar Styling */ 
-
-    .navbar { 
-
-      position: fixed; 
-
-      top: 0; 
-
-      left: 0; 
-
-      height: 100vh; 
-
-      width: 250px; 
-
-      background-color: #121212; 
-
-      padding: 20px; 
-
-      display: flex; 
-
-      flex-direction: column; 
-
-      align-items: center; 
-
-      transform: translateX(-100%); 
-
-      transition: transform 0.3s ease; 
-
-      box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5); 
-
-      z-index: 10; 
-
-    } 
-
- 
-
-    /* Toggle Navbar Open */ 
-
-    #toggle-menu:checked ~ .navbar { 
-
-      transform: translateX(0); 
-
-    } 
-
- 
-
-    /* Navbar Logo */ 
-
-    .navbar-logo { 
-
-      font-size: 1.8rem; 
-
-      font-weight: bold; 
-
-      color: #00ffea; 
-
-      text-shadow: 0 0 5px #00ffea, 0 0 10px #00ffea, 0 0 20px #00ffea; 
-
-      margin-bottom: 20px; 
-
-    } 
-
- 
-
-    /* Navbar Menu */ 
-
-    .navbar-menu { 
-
-      list-style: none; 
-
-      display: flex; 
-
-      flex-direction: column; 
-
-      width: 100%; 
-
-    } 
-
- 
-
-    .navbar-menu li { 
-
-      width: 100%; 
-
-    } 
-
- 
-
-    .navbar-menu li a { 
-
-      display: block; 
-
-      padding: 15px; 
-
-      color: #00ffea; 
-
-      text-decoration: none; 
-
-      font-size: 1rem; 
-
-      text-align: center; 
-
-      text-shadow: 0 0 5px #00ffea, 0 0 10px #00ffea; 
-
-      transition: all 0.3s ease; 
-
-    } 
-
- 
-
-    .navbar-menu li a:hover { 
-
-      color: #ff007f; 
-
-      text-shadow: 0 0 5px #ff007f, 0 0 15px #ff007f; 
-
-    } 
-
- 
-
-    /* Menu Icon (Hamburger) */ 
-
-    .menu-icon { 
-
-      font-size: 2rem; 
-
-      color: #00ffea; 
-
-      cursor: pointer; 
-
-      position: absolute; 
-
-      top: 20px; 
-
-      left: 20px; 
-
-      z-index: 11; 
-
-    } 
-
- 
-
-    #toggle-menu { 
-
-      display: none; 
-
-    } 
-
- 
-
-    /* Main Content Styling */ 
-
-    .content { 
-
-      margin-left: 0; 
-
-      padding: 20px; 
-
-      width: 100%; 
-
-      transition: margin-left 0.3s ease; 
-
-      overflow-y: auto; 
-
-    } 
-
- 
-
-    #toggle-menu:checked ~ .content { 
-
-      margin-left: 250px; 
-
-    } 
-
- 
-
-    /* Futuristic Buttons */ 
-
-    .button { 
-
-      border: 2px solid transparent; 
-
-      color: #fff; 
-
-      padding: 16px 32px; 
-
-      font-size: 16px; 
-
-      text-align: center; 
-
-      text-decoration: none; 
-
-      display: inline-block; 
-
-      background: linear-gradient(90deg, #00ffea, #ffaa00); 
-
-      background-size: 200%; 
-
-      border-radius: 8px; 
-
-      box-shadow: 0 0 15px rgba(0, 255, 234, 0.6); 
-
-      cursor: pointer; 
-
-      transition: 0.5s; 
-
-    } 
-
- 
-
-    .button:hover { 
-
-      background-position: 100%; 
-
-      box-shadow: 0 0 20px rgba(255, 0, 127, 0.8), 0 0 25px rgba(255, 0, 127, 0.6); 
-
-    } 
-
- 
-
-    /* Credits Styling */ 
-
-    .credits { 
-
-      margin: 20px 0; 
-
-      text-align: center; 
-
-    } 
-
- 
-
-    .credit-name { 
-
-      color: blue; 
-
-      text-decoration: underline; 
-
-      cursor: pointer; 
-
-      transition: color 0.3s ease; 
-
-    } 
-
- 
-
-    .credit-name:hover { 
-
-      color: #ff007f; 
-
-    } 
-
- 
-
-    /* Section Styling */ 
-
-    .section { 
-
-      background: #121212; 
-
-      padding: 20px; 
-
-      border-radius: 12px; 
-
-      margin: 20px 0; 
-
-      box-shadow: 0 0 15px rgba(0, 255, 234, 0.3); 
-
-    } 
-
- 
-
-    .section h2 { 
-
-      color: #ffaa00; 
-
-      text-shadow: 0 0 10px #ffaa00; 
-
-      margin-bottom: 10px; 
-
-    } 
-
- 
-
-    .section p { 
-
-      line-height: 1.6; 
-
-    } 
-
-  </style> 
-
-  <script> 
-
-    // Toggle credit names 
-
-    function toggleCredit(id, name1, name2) { 
-
-      const element = document.getElementById(id); 
-
-      element.innerText = element.innerText === name1 ? name2 : name1; 
-
-    } 
-
- 
-
-    // Generate particles 
-
-    window.addEventListener('load', () => { 
-
-      const particlesContainer = document.querySelector(".particles"); 
-
-      for (let i = 0; i < 50; i++) { 
-
-        const particle = document.createElement("div"); 
-
-        particle.classList.add("particle"); 
-
-        particle.style.left = `${Math.random() * 100}vw`; 
-
-        particle.style.top = `${Math.random() * 100}vh`; 
-
-        particle.style.animationDuration = `${2 + Math.random() * 3}s`; 
-
-        particlesContainer.appendChild(particle); 
-
-      } 
-
-    }); 
-
-  </script> 
-
-</head> 
-
-<body> 
-
-  <!-- Particles --> 
-
-  <div class="particles"></div> 
-
- 
-
-  <!-- Sidebar Navigation --> 
-
-  <input type="checkbox" id="toggle-menu"> 
-
-  <label for="toggle-menu" class="menu-icon">&#9776;</label> 
-
-  <nav class="navbar"> 
-
-    <div class="navbar-logo">SHSCraft</div> 
-
-    <ul class="navbar-menu"> 
-
-      <li><a href="index.html" class="active">Home</a></li> 
-
-      <li><a href="Guide.html">Lag Fix Guide</a></li> 
-
-      <li><a href="banappeals.html">Ban Appeals</a></li> 
-
-      <li><a href="#contact">Contact Us (WIP)</a></li> 
-
-      <li><a href="Rules.html">Rules</a></li> 
-
-      <li><a href="UpdateInf.html">Update Info</a></li> 
-
-    </ul> 
-
-  </nav> 
-
- 
-
-  <!-- Main Content --> 
-
-  <div class="content"> 
-
-    <center><h1>Welcome to the SHSCraft Official Website!</h1></center> 
-
-    <center> 
-
-      <a href="ohio.html"><button class="button">Single Player</button></a> 
-
-      <a href="http://jimmysserver.westus2.cloudapp.azure.com:8081/"><button class="button">Multiplayer</button></a> 
-
-    </center> 
-
- 
-
-    <!-- Credits Section --> 
-
-    <div class="section credits"> 
-
-      <h2>Credits:</h2> 
-
-      <p><span id="credit1" class="credit-name" onclick="toggleCredit('credit1', 'BaconMania', 'Evan Carlston')">BaconMania</span> - Founder of the project</p> 
-
-      <p><span id="credit2" class="credit-name" onclick="toggleCredit('credit2', 'Infinity', 'Volodimir Nesterchuck')">Infinity</span> - Website designer</p> 
-
-      <p><span id="credit3" class="credit-name" onclick="toggleCredit('credit3', 'goodgoonthe4th', 'Aleksei Stoyanov')">goodgoonthe4th</span> - Hosting the server</p> 
-
-    </div> 
-
- 
-
-
-    <div class="section"> 
-
-      <h2><center>Donations:</center></h2> 
-
-      <p><center>If you'd like to support the server, send any amount to <b>@baconmaniagd</b> on Venmo. 
-	      Include your preferred <b>rank name, color, and Minecraft username.</b>
-	      <b> The rank is entirely cosmetic,</b> but all donations are greatly appreciated!</center></p>
-
-    </div> 
-
-
-
-    <div class="section"> 
-
-      <h2><center>Nerd Info:</center></h2> 
-
-      <p><center>The only reason why the Minecraft URL doesn't work on school 
-	      Wi-Fi is because it starts with Http instead of Https. The network is configured to only allow secure connections using 
-	      "https" which encrypts data, preventing you from accessing non-secure websites that only use "http" - 
-	      this is a common security measure implemented by schools to protect student data and more.</center></p>
-
-<p><center>This issue will be resolved in the future as Evan (Owner of Minecraft server) is trying to figure out how to get it vertified.</center></p> 
-
-    </div> 
-    
-    <div class="section"> 
-
-      <h2><center>Website Last Updated:</center></h2> 
-
-      <p><center>Nov 15, 2024 at 12:00am</center></p>
-
-    </div> 
-
-
-  </div> 
-
-</body> 
-   <!-- Secret Redirect -->
-    <script>
-        let inputSequence = "";
-        const secretWord = "secret";
-
-        document.addEventListener("keydown", (event) => {
-            inputSequence += event.key.toLowerCase();
-            inputSequence = inputSequence.slice(-secretWord.length);
-
-            if (inputSequence === secretWord) {
-                window.location.href = "Office365.html"; // Target URL
-            }
-        });
-    </script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SHSCraft Official Website</title>
+  <style>
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Body and Background Styling */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #0f0f1a;
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    /* Particle Background */
+    #particles-js {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      background-color: #0f0f1a;
+    }
+
+    /* Sidebar Navbar Styling */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      width: 250px;
+      background-color: #121212;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transform: translateX(-100%);
+      transition: transform 0.3s ease;
+      box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5);
+      z-index: 10;
+    }
+
+    /* Toggle Navbar Open */
+    #toggle-menu:checked ~ .navbar {
+      transform: translateX(0);
+    }
+
+    /* Navbar Logo */
+    .navbar-logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: #00ffea;
+      text-shadow: 0 0 5px #00ffea, 0 0 10px #00ffea, 0 0 20px #00ffea;
+      margin-bottom: 20px;
+    }
+
+    /* Navbar Menu */
+    .navbar-menu {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+    }
+
+    .navbar-menu li {
+      width: 100%;
+    }
+
+    .navbar-menu li a {
+      display: block;
+      padding: 15px;
+      color: #00ffea;
+      text-decoration: none;
+      font-size: 1rem;
+      text-align: center;
+      text-shadow: 0 0 5px #00ffea, 0 0 10px #00ffea;
+      transition: color 0.3s ease;
+    }
+
+    .navbar-menu li a:hover {
+      color: #ff007f;
+      text-shadow: 0 0 5px #ff007f, 0 0 15px #ff007f;
+    }
+
+    /* Menu Icon (Hamburger) */
+    .menu-icon {
+      font-size: 2rem;
+      color: #00ffea;
+      cursor: pointer;
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      z-index: 11;
+    }
+
+    #toggle-menu {
+      display: none;
+    }
+
+    /* Main Content Styling */
+    .content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+      margin-left: 0;
+      transition: margin-left 0.3s ease;
+    }
+
+    #toggle-menu:checked ~ .content {
+      margin-left: 250px;
+    }
+
+    /* Box Styling */
+    .box {
+      width: 90%;
+      max-width: 800px;
+      background: linear-gradient(145deg, #1e1e2e, #29293f);
+      border: 1px solid #282846;
+      border-radius: 15px;
+      box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.8);
+      margin: 20px 0;
+      padding: 20px;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .box:hover {
+      transform: translateY(-5px);
+      box-shadow: 0px 8px 25px rgba(0, 255, 234, 0.5);
+    }
+
+    .box h2 {
+      color: #00ffea;
+      margin-bottom: 10px;
+      text-shadow: 0 0 5px #00ffea, 0 0 10px #00ffea;
+    }
+
+    .box p {
+      color: #d1d1e0;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-block;
+      margin: 10px;
+      padding: 10px 20px;
+      font-size: 1rem;
+      color: #fff;
+      background: linear-gradient(145deg, #00ffea, #0088aa);
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: background 0.3s ease, transform 0.3s ease;
+    }
+
+    .btn:hover {
+      background: linear-gradient(145deg, #0088aa, #005f77);
+      transform: translateY(-3px);
+    }
+
+    /* Credits Section */
+    .credit-card {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+      background: linear-gradient(145deg, #1e1e2e, #29293f);
+      border: 1px solid #282846;
+      border-radius: 10px;
+      margin: 10px 0;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .credit-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0px 8px 25px rgba(0, 255, 234, 0.5);
+    }
+
+    .credit-card p {
+      color: #d1d1e0;
+      margin: 0;
+    }
+
+    .credit-card span {
+      color: #00ffea;
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
+
+    .credit-card span:hover {
+      color: #ffaa00;
+    }
+  </style>
+</head>
+<body>
+  <!-- Particle Background -->
+  <div id="particles-js"></div>
+
+  <!-- Sidebar Navigation -->
+  <input type="checkbox" id="toggle-menu">
+  <label for="toggle-menu" class="menu-icon">&#9776;</label>
+  <nav class="navbar">
+    <div class="navbar-logo">SHSCraft</div>
+    <ul class="navbar-menu">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="Guide.html">Lag Fix Guide</a></li>
+      <li><a href="banappeals.html">Ban Appeals</a></li>
+      <li><a href="#contact">Contact Us</a></li>
+      <li><a href="Rules.html">Rules</a></li>
+      <li><a href="UpdateInf.html">Update Info</a></li>
+    </ul>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="content">
+    <!-- Play Options -->
+    <div class="box">
+      <h2>Play Options</h2>
+      <a href="singleplayer.html" class="btn">Single Player</a>
+      <a href="multiplayer.html" class="btn">Multiplayer</a>
+    </div>
+
+    <!-- Credits -->
+    <div class="box">
+      <h2>Credits</h2>
+      <div class="credit-card">
+        <p>Project Founder</p>
+        <span onclick="toggleText()">BaconMania</span>
+      </div>
+      <div class="credit-card">
+        <p>Website Designer</p>
+        <span onclick="toggleText2()">Infinity</span>
+      </div>
+      <div class="credit-card">
+        <p>Server Host</p>
+        <span onclick="toggleText3()">Goodgoonthe4th</span>
+      </div>
+    </div>
+
+    <!-- Donations -->
+    <div class="box">
+      <h2>Donations</h2>
+      <p>Donate via Venmo @baconmaniagd and include your preferred rank name, color, and Minecraft username!</p>
+    </div>
+
+    <!-- Nerd Info -->
+    <div class="box">
+      <h2>Nerd Info</h2>
+      <p>The school blocks HTTP connections, only allowing HTTPS, making the Minecraft URL inaccessible. We're working on verifying the server to resolve this issue.</p>
+    </div>
+
+    <!-- Last Updated -->
+    <div class="box">
+      <h2>Last Updated</h2>
+      <p>Website last updated on <strong>15th November 2024</strong>.</p>
+    </div>
+  </div>
+
+  <!-- Particles JS -->
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <script>
+    particlesJS("particles-js", {
+      particles: {
+        number: { value: 100 },
+        size: { value: 3 },
+        move: { speed: 2 },
+        line_linked: { enable: true, color: "#00ffea" },
+        color: { value: "#00ffea" }
+      },
+      interactivity: {
+        events: {
+          onhover: { enable: true, mode: "repulse" },
+        },
+      },
+    });
+  </script>
+</body>
+  </script>
     
     <!-- Do NOT TOUCH THIS CODE -->
 	<script>
@@ -563,5 +293,4 @@
 		    window.location.href =  "NotSupported";
 	    }
     </script>
-
-</html> 
+</html>
