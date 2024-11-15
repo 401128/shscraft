@@ -1,269 +1,453 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Website Updates</title>
-  <style>
-    /* Reset */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+<!DOCTYPE html> 
 
-    /* Body Styling */
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #0f0f1a;
-      color: #fff;
-      display: flex;
-    }
+<html lang="en"> 
 
-    /* Sidebar Navbar Styling */
-    .navbar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      height: 100vh;
-      width: 250px;
-      background-color: #121212;
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      transform: translateX(-100%);
-      transition: transform 0.3s ease;
-      box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5);
-      z-index: 10;
-    }
+<head> 
 
-    /* Toggle Navbar Open */
-    #toggle-menu:checked ~ .navbar {
-      transform: translateX(0);
-    }
+  <meta charset="UTF-8"> 
 
-    /* Navbar Logo */
-    .navbar-logo {
-      font-size: 1.8rem;
-      font-weight: bold;
-      color: #00ffea;
-      text-shadow: 0 0 5px #00ffea, 0 0 10px #00ffea, 0 0 20px #00ffea;
-      margin-bottom: 20px;
-    }
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
 
-    /* Navbar Menu */
-    .navbar-menu {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      width: 100%;
-    }
+  <title>SHSCraft Official Website - Updates</title> 
 
-    .navbar-menu li {
-      width: 100%;
-    }
+  <style> 
 
-    .navbar-menu li a {
-      display: block;
-      padding: 15px;
-      color: #00ffea;
-      text-decoration: none;
-      font-size: 1rem;
-      text-align: center;
-      text-shadow: 0 0 5px #00ffea, 0 0 10px #00ffea;
-      transition: color 0.3s ease;
-    }
+    /* Reset */ 
 
-    .navbar-menu li a:hover {
-      color: #ff007f;
-      text-shadow: 0 0 5px #ff007f, 0 0 15px #ff007f;
-    }
+    * { 
 
-    /* Menu Icon (Hamburger) */
-    .menu-icon {
-      font-size: 2rem;
-      color: #00ffea;
-      cursor: pointer;
-      position: absolute;
-      top: 20px;
-      left: 20px;
-      z-index: 11;
-    }
+      margin: 0; 
 
-    #toggle-menu {
-      display: none;
-    }
+      padding: 0; 
 
-    /* Main Content Styling */
-    .content {
-      margin-left: 0;
-      padding: 20px;
-      width: 100%;
-      transition: margin-left 0.3s ease;
-    }
+      box-sizing: border-box; 
 
-    #toggle-menu:checked ~ .content {
-      margin-left: 250px;
-    }
+    } 
 
-    /* Button Styling */
-    .button {
-      border: none;
-      color: white;
-      padding: 16px 32px;
-      text-align: center;
-      text-decoration: none;
-      display: inline-block;
-      font-size: 16px;
-      margin: 4px 2px;
-      transition-duration: 0.4s;
-      cursor: pointer;
-    }
+ 
 
-    .button1 {
-      background-color: white;
-      color: black;
-      border: 2px solid #04AA6D;
-    }
+    /* Body Styling */ 
 
-    .button1:hover {
-      background-color: #04AA6D;
-      color: white;
-    }
+    body { 
 
-    .button2 {
-      background-color: white;
-      color: black;
-      border: 2px solid #008CBA;
-    }
+      font-family: Arial, sans-serif; 
 
-    .button2:hover {
-      background-color: #008CBA;
-      color: white;
-    }
+      background-color: #0f0f1a; 
 
-    /* Additional Styling */
-    h1 {
-      color: #00ffea;
-      text-shadow: 0 0 10px #00ffea, 0 0 20px #00ffea;
-    }
+      color: #fff; 
 
-    p.notice {
-      font-size: 1.2rem;
-      color: #ff007f;
-      text-shadow: 0 0 10px #ff007f, 0 0 20px #ff007f;
-    }
+      overflow-x: hidden; 
 
-    /* Website Updates Styling */
-    .updates-container {
-      max-width: 800px;
-      margin: 20px auto;
-      background: #141428;
-      border-radius: 10px;
-      padding: 30px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-      color: #f5f5f5;
-    }
+    } 
 
-    .updates-container h1 {
-      font-size: 2.2rem;
-      font-weight: bold;
-      text-align: center;
-      margin-bottom: 20px;
-      color: #6dcff6;
-    }
+ 
 
-    .updates {
-      height: 300px;
-      overflow-y: scroll;
-      scrollbar-width: thin;
-      scrollbar-color: #6dcff6 #141428;
-    }
+    /* Sidebar Navbar Styling */ 
 
-    .updates::-webkit-scrollbar {
-      width: 8px;
-    }
+    .navbar { 
 
-    .updates::-webkit-scrollbar-track {
-      background: #141428;
-    }
+      position: fixed; 
 
-    .updates::-webkit-scrollbar-thumb {
-      background-color: #6dcff6;
-      border-radius: 10px;
-    }
+      top: 0; 
 
-    .update {
-      padding: 15px;
-      background: #1a1a33;
-      border-radius: 8px;
-      margin-bottom: 15px;
-      transition: transform 0.3s ease-in-out;
-      animation: fadeInUp 0.5s ease both;
-    }
+      left: 0; 
 
-    .update h2 {
-      font-size: 1.5rem;
-      color: #f5f5f5;
-      margin-bottom: 8px;
-    }
+      height: 100vh; 
 
-    .update p {
-      font-size: 1rem;
-      color: #b3b3b3;
-    }
+      width: 250px; 
 
-    .update:hover {
-      transform: scale(1.02);
-      background: #282845;
-    }
+      background-color: #121212; 
 
-    .update:hover h2, .update:hover p {
-      color: #e0e0e0;
-    }
+      padding: 20px; 
 
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-  </style>
-</head>
-<body>
-  <!-- Sidebar Navigation -->
-  <input type="checkbox" id="toggle-menu">
-  <label for="toggle-menu" class="menu-icon">&#9776;</label>
-  <nav class="navbar">
-    <div class="navbar-logo">SHSCraft</div>
-    <ul class="navbar-menu">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="Guide.html">Lag Fix Guide</a></li>
-      <li><a href="banappeals.html">Ban Appeals</a></li>
-      <li><a href="#contact">Contact Us (WIP)</a></li>
-      <li><a href="Rules.html">Rules</a></li>
-       <li><a href="UpdateInf.html" class="active">Update Info</a></li>
-      <!-- <li><a href="403.html">Web Admin Sign In</a></li> -->
-    </ul>
-  </nav>
+      display: flex; 
 
-  <!-- Main Content -->
-  <div class="content">
-    <div class="updates-container">
-      <h1>Website Updates</h1>
-      <div class="updates">
-        <div class="update">
-         <!-- <h2>Version 1.3.5 - New Features</h2>
-          <p>Added new user profile customization options, enhanced dashboard speed, and updated security protocols.</p>
-        </div> -->
-        <div class="update">
-          <h2>Version 1.3.0 - UI Improvements and More</h2>
-          <p>Redesigned homepage (A Little)</p>
+      flex-direction: column; 
+
+      align-items: center; 
+
+      transform: translateX(-100%); 
+
+      transition: transform 0.3s ease; 
+
+      box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5); 
+
+      z-index: 10; 
+
+    } 
+
+ 
+
+    /* Toggle Navbar Open */ 
+
+    #toggle-menu:checked ~ .navbar { 
+
+      transform: translateX(0); 
+
+    } 
+
+ 
+
+    /* Navbar Logo */ 
+
+    .navbar-logo { 
+
+      font-size: 1.8rem; 
+
+      font-weight: bold; 
+
+      color: #00ffea; 
+
+      text-shadow: 0 0 5px #00ffea, 0 0 10px #00ffea, 0 0 20px #00ffea; 
+
+      margin-bottom: 20px; 
+
+    } 
+
+ 
+
+    /* Navbar Menu */ 
+
+    .navbar-menu { 
+
+      list-style: none; 
+
+      display: flex; 
+
+      flex-direction: column; 
+
+      width: 100%; 
+
+    } 
+
+ 
+
+    .navbar-menu li { 
+
+      width: 100%; 
+
+    } 
+
+ 
+
+    .navbar-menu li a { 
+
+      display: block; 
+
+      padding: 15px; 
+
+      color: #00ffea; 
+
+      text-decoration: none; 
+
+      font-size: 1rem; 
+
+      text-align: center; 
+
+      text-shadow: 0 0 5px #00ffea, 0 0 10px #00ffea; 
+
+      transition: color 0.3s ease; 
+
+    } 
+
+ 
+
+    .navbar-menu li a:hover { 
+
+      color: #ff007f; 
+
+      text-shadow: 0 0 5px #ff007f, 0 0 15px #ff007f; 
+
+    } 
+
+ 
+
+    /* Menu Icon (Hamburger) */ 
+
+    .menu-icon { 
+
+      font-size: 2rem; 
+
+      color: #00ffea; 
+
+      cursor: pointer; 
+
+      position: absolute; 
+
+      top: 20px; 
+
+      left: 20px; 
+
+      z-index: 11; 
+
+    } 
+
+ 
+
+    #toggle-menu { 
+
+      display: none; 
+
+    } 
+
+ 
+
+    /* Main Content Styling */ 
+
+    .content { 
+
+      margin-left: 0; 
+
+      padding: 60px 20px 20px 20px; 
+
+      width: 100%; 
+
+      transition: margin-left 0.3s ease; 
+
+      position: relative; 
+
+      z-index: 2; 
+
+    } 
+
+ 
+
+    #toggle-menu:checked ~ .content { 
+
+      margin-left: 250px; 
+
+    } 
+
+ 
+
+    /* Updates Section */ 
+
+    .updates { 
+
+      margin-top: 30px; 
+
+    } 
+
+ 
+
+    .update-item { 
+
+      background-color: #1e1e2e; 
+
+      padding: 15px; 
+
+      margin-bottom: 20px; 
+
+      border-radius: 8px; 
+
+      box-shadow: 0 0 15px rgba(0, 255, 234, 0.3); 
+
+      transform: scale(1); 
+
+      transition: transform 0.3s ease; 
+
+      animation: fadeInUp 0.5s ease; 
+
+    } 
+
+ 
+
+    .update-item:hover { 
+
+      transform: scale(1.05); 
+
+    } 
+
+ 
+
+    @keyframes fadeInUp { 
+
+      0% { 
+
+        opacity: 0; 
+
+        transform: translateY(20px); 
+
+      } 
+
+      100% { 
+
+        opacity: 1; 
+
+        transform: translateY(0); 
+
+      } 
+
+    } 
+
+ 
+
+    .update-item h2 { 
+
+      color: #00ffea; 
+
+      text-shadow: 0 0 10px #00ffea; 
+
+      margin-bottom: 5px; 
+
+    } 
+
+ 
+
+    .update-item p { 
+
+      color: #ffaa00; 
+
+      text-shadow: 0 0 5px #ffaa00; 
+
+    } 
+
+ 
+
+    /* Particles Background */ 
+
+    .particles { 
+
+      position: fixed; 
+
+      top: 0; 
+
+      left: 0; 
+
+      width: 100vw; 
+
+      height: 100vh; 
+
+      overflow: hidden; 
+
+      z-index: 1; 
+
+      pointer-events: none; 
+
+    } 
+
+ 
+
+    .particle { 
+
+      position: absolute; 
+
+      width: 4px; 
+
+      height: 4px; 
+
+      background-color: #00ffea; 
+
+      border-radius: 50%; 
+
+      opacity: 0.7; 
+
+      animation: floatUp 6s linear infinite; 
+
+    } 
+
+ 
+
+    @keyframes floatUp { 
+
+      from { 
+
+        transform: translateY(100vh); 
+
+        opacity: 0.2; 
+
+      } 
+
+      to { 
+
+        transform: translateY(-100vh); 
+
+        opacity: 0.8; 
+
+      } 
+
+    } 
+
+ 
+
+    /* Header Styling */ 
+
+    h1 { 
+
+      color: #00ffea; 
+
+      text-shadow: 0 0 10px #00ffea, 0 0 20px #00ffea; 
+
+      margin-top: 40px; 
+
+    } 
+
+  </style> 
+
+</head> 
+
+<body> 
+
+  <!-- Sidebar Navigation --> 
+
+  <input type="checkbox" id="toggle-menu"> 
+
+  <label for="toggle-menu" class="menu-icon">&#9776;</label> 
+
+  <nav class="navbar"> 
+
+    <div class="navbar-logo">SHSCraft</div> 
+
+    <ul class="navbar-menu"> 
+
+      <li><a href="index.html">Home</a></li> 
+
+      <li><a href="Guide.html">Lag Fix Guide</a></li> 
+
+      <li><a href="banappeals.html">Ban Appeals</a></li> 
+
+      <li><a href="#contact">Contact Us (WIP)</a></li> 
+
+      <li><a href="Rules.html">Rules</a></li>  
+
+      <li><a href="UpdateInf.html">Update Info</a></li> 
+
+    </ul> 
+
+  </nav> 
+
+ 
+
+  <!-- Particles Background --> 
+
+  <div class="particles"> 
+
+    <!-- JavaScript will generate particles here --> 
+
+  </div> 
+
+ 
+
+  <!-- Main Content --> 
+
+  <div class="content"> 
+
+    <h1>Website Updates</h1> 
+
+    <div class="updates"> 
+
+     <!--  <div class="update-item"> 
+
+        <h2>Update 3.0 - New Features</h2> 
+
+        <p>Add Here</p> 
+
+      </div> -->
+       <div class="update-item"> 
+
+        <h2>Update 3.0 - New UI Improvments and More</h2> 
+
+       <p>Redesigned homepage (A Little)</p>
           <p>New Navigation Bar that retracts when clicking</p>
           <p>Removed Mobile Support (Will not be able to access the website)</p>
           <p>Removed ChatRoom</p>
@@ -273,12 +457,15 @@
           <p>Added Nerd Info To Home Page</p>
           <p>Bug Fixes With Website (Animations not working and Pages CSS Broken Fixed)</p>
 	  <p>Added New Admin System</p>
-	  <p>See You Next Major Website Update!</p>
-          
-        </div>
-         <div class="update">
-          <h2>Version 2.2.0 - Bug Fixes and Easter Eggs</h2>
-          <p>Navigation Bar UI </p>
+      <p>Added </p>
+	  <p>See You Next Major Website Update!</p> 
+
+      </div>
+       
+       <div class="update-item"> 
+
+        <h2>Update 2.2.0 - Bug Fixes and Easter Eggs</h2> 
+
           <p>Added 2 Easter Eggs</p>
           <p>Improved Credits on Front Screen</p>
           <p>Changed Website Title from "Word" to "Secret Redirect"</p>
@@ -286,40 +473,77 @@
           <p>Added 3 Easter Eggs To the Website (Good Luck Finding Them)</p>
           <p>Added 404 Page</p>
           <p>Added 303 Page</p>
-          <p>Bug Fixes</p>
-        </div>
-        <div class="update">
-          <h2>Version 2.1.0 - Bug Fixes and Pages</h2>
-          <p>Navigation Bar UI</p>
+          <p>Bug Fixes (Page Animations) </p> 
+
+      </div> 
+      <div class="update-item"> 
+
+        <h2>Update 2.1.0 - Bug Fixes and Pages</h2> 
+
+          <p>Added stuff to Navigation Bar UI</p>
           <p>Added Web Admin Sign In</p>
           <p>Added Contact Us (WIP)</p>
           <p>Added Ban Appeals </p>
           <p>Added Toggle Dark Mode</p>
-          <p>Bug Fixes</p>
-        </div>
-        <div class="update">
-          <h2>Version 2.0.0 - New Navigation UI!</h2>
-          <p>Navigation Bar UI</p>
+          <p>Bug Fixes (Page Animations)</p>
+
+      </div> 
+ 
+
+
+      <div class="update-item"> 
+
+        <h2>Update 2.0.0 - New Navigation UI And Pages</h2> 
+
+         <p>Navigation Bar UI</p>
           <p>Added Lag Fix Guide</p>
           <p>Added Rules</p>
           <p>Added Chat Room (WIP)</p>
           <p>New Button UI</p>
-        </div>
-        <div class="update">
-          <h2>Version 1.0.0 - Birth Of An Era</h2>
-          <p>Released Website</p>
+      </div> 
+
+      <div class="update-item"> 
+
+        <h2>Update 1.0.0 - Birth Of A New Era! </h2> 
+
+        <p>Released Website</p>
           <p>Added Homepage</p>
           <p>Supported On all Devices</p>
           <p>See you next update!</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</body>
-  <!-- Do NOT TOUCH THIS CODE -->
-	<script>
-	    if (/Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-		    window.location.href =  "NotSupported";
-	    }
-    </script>
-</html>
+      </div> 
+
+    </div> 
+
+  </div> 
+
+ 
+
+  <script> 
+
+    // Generate particles 
+
+    const particlesContainer = document.querySelector('.particles'); 
+
+    const numParticles = 100; 
+
+ 
+
+    for (let i = 0; i < numParticles; i++) { 
+
+      const particle = document.createElement('div'); 
+
+      particle.classList.add('particle'); 
+
+      particle.style.left = `${Math.random() * 100}vw`; 
+
+      particle.style.animationDelay = `${Math.random() * 6}s`; 
+
+      particlesContainer.appendChild(particle); 
+
+    } 
+
+  </script> 
+
+</body> 
+
+</html> 
