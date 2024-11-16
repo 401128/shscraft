@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Device Not Supported</title>
+  <style>
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Body Styling */
+    body {
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(135deg, #2e3b4e, #1e2834);
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Heading Styling */
+    h1 {
+      font-size: 3rem;
+      color: #00ffea;
+      text-shadow: 0 0 10px #00ffea, 0 0 20px #00ffea, 0 0 30px #00ffea;
+      margin-bottom: 20px;
+      animation: glowText 1.5s ease-in-out infinite alternate;
+    }
+
+    /* Text Glow Animation */
+    @keyframes glowText {
+      0% {
+        text-shadow: 0 0 10px #00ffea, 0 0 20px #00ffea, 0 0 30px #00ffea;
+      }
+      100% {
+        text-shadow: 0 0 20px #00ffea, 0 0 40px #00ffea, 0 0 50px #00ffea;
+      }
+    }
+
+    /* Danger Emoji Styling */
+    .danger-emoji {
+      font-size: 4rem;
+      color: #ff4500;
+      text-shadow: 0 0 10px #ff4500, 0 0 20px #ff4500, 0 0 30px #ff4500;
+      margin-bottom: 20px;
+      animation: pulseEmoji 1.5s infinite ease-in-out;
+    }
+
+    /* Danger Emoji Pulse Animation */
+    @keyframes pulseEmoji {
+      0% {
+        transform: scale(1);
+        text-shadow: 0 0 10px #ff4500, 0 0 20px #ff4500, 0 0 30px #ff4500;
+      }
+      50% {
+        transform: scale(1.1);
+        text-shadow: 0 0 20px #ff6347, 0 0 40px #ff6347, 0 0 50px #ff6347;
+      }
+      100% {
+        transform: scale(1);
+        text-shadow: 0 0 10px #ff4500, 0 0 20px #ff4500, 0 0 30px #ff4500;
+      }
+    }
+
+    /* Message Styling */
+    p {
+      font-size: 1.5rem;
+      color: #ffffff;
+      text-shadow: 0 0 5px #ffffff, 0 0 15px #00ffea;
+    }
+
+    /* Button Styling */
+    .retry-btn {
+      padding: 15px 30px;
+      font-size: 1.2rem;
+      background-color: #00ffea;
+      border: none;
+      border-radius: 10px;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+      text-transform: uppercase;
+      margin-top: 20px;
+    }
+
+    .retry-btn:hover {
+      background-color: #00ccbf;
+      transform: scale(1.1);
+    }
+
+    /* Particle Background */
+    #particles-js {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+
+    /* Mobile-Only Adjustments */
+    @media (max-width: 768px) {
+      body {
+        background: linear-gradient(135deg, #333, #1e2834);
+      }
+
+      h1 {
+        font-size: 2.5rem;
+      }
+
+      p {
+        font-size: 1.2rem;
+      }
+
+      .danger-emoji {
+        font-size: 3rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Particle Effect -->
+  <div id="particles-js"></div>
+
+  <div>
+    <div class="danger-emoji">⚠️</div>
+    <h1>Device Not Supported</h1>
+    <p>Sorry, this website is not supported on your device.</p>
+
+  </div>
+
+  <!-- Particle Effect Script -->
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <script>
+    const isMobile = /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+    particlesJS("particles-js", {
+      particles: {
+        number: {
+          value: isMobile ? 30 : 100, /* Reduced particles on mobile */
+          density: { enable: true, value_area: isMobile ? 600 : 800 }
+        },
+        color: { value: "#00ffea" }, /* Cyan color for particles */
+        shape: {
+          type: "circle",
+          stroke: { width: 0, color: "#000000" }
+        },
+        opacity: {
+          value: 0.5,
+          random: true,
+          anim: { enable: true, speed: 1, opacity_min: 0 }
+        },
+        size: {
+          value: 3,
+          random: true
+        },
+        line_linked: {
+          enable: !isMobile, /* Disable linked lines for mobile */
+          distance: 150,
+          color: "#00ffea",
+          opacity: 0.4,
+          width: 1
+        },
+        move: {
+          enable: true,
+          speed: 2,
+          direction: "none",
+          random: true,
+          out_mode: "out"
+        }
+      },
+      interactivity: {
+        detect_on: "canvas",
+        events: {
+          onhover: { enable: !isMobile, mode: "repulse" }, /* Disable hover interactivity on mobile */
+        },
+        modes: {
+          repulse: { distance: 50, duration: 0.4 }
+        }
+      }
+    });
+  </script>
+
+</body>
+</html>
