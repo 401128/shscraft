@@ -24,6 +24,17 @@
       text-align: center;
       position: relative;
       overflow: hidden;
+      animation: fadeInBackground 2s ease;
+    }
+
+    /* Fade In Background Animation */
+    @keyframes fadeInBackground {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
     }
 
     /* Heading Styling */
@@ -75,6 +86,19 @@
       font-size: 1.5rem;
       color: #ffffff;
       text-shadow: 0 0 5px #ffffff, 0 0 15px #00ffea;
+      animation: fadeInText 2s ease-out;
+    }
+
+    /* Fade In Text Animation */
+    @keyframes fadeInText {
+      0% {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     /* Button Styling */
@@ -89,6 +113,19 @@
       transition: background-color 0.3s ease, transform 0.3s ease;
       text-transform: uppercase;
       margin-top: 20px;
+      animation: slideUp 1s ease-out;
+    }
+
+    /* Slide Up Button Animation */
+    @keyframes slideUp {
+      0% {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     .retry-btn:hover {
@@ -106,7 +143,7 @@
       z-index: -1;
     }
 
-    /* Mobile-Only Adjustments */
+    /* Mobile-Only Device Check */
     @media (max-width: 768px) {
       body {
         background: linear-gradient(135deg, #333, #1e2834);
@@ -124,6 +161,7 @@
         font-size: 3rem;
       }
     }
+
   </style>
 </head>
 <body>
@@ -135,19 +173,16 @@
     <div class="danger-emoji">⚠️</div>
     <h1>Device Not Supported</h1>
     <p>Sorry, this website is not supported on your device.</p>
-
   </div>
 
   <!-- Particle Effect Script -->
   <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
   <script>
-    const isMobile = /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-
     particlesJS("particles-js", {
       particles: {
         number: {
-          value: isMobile ? 30 : 100, /* Reduced particles on mobile */
-          density: { enable: true, value_area: isMobile ? 600 : 800 }
+          value: 100,
+          density: { enable: true, value_area: 800 }
         },
         color: { value: "#00ffea" }, /* Cyan color for particles */
         shape: {
@@ -164,9 +199,9 @@
           random: true
         },
         line_linked: {
-          enable: !isMobile, /* Disable linked lines for mobile */
+          enable: true,
           distance: 150,
-          color: "#00ffea",
+          color: "#00ffea", /* Cyan for linking lines */
           opacity: 0.4,
           width: 1
         },
@@ -179,9 +214,8 @@
         }
       },
       interactivity: {
-        detect_on: "canvas",
         events: {
-          onhover: { enable: !isMobile, mode: "repulse" }, /* Disable hover interactivity on mobile */
+          onhover: { enable: true, mode: "repulse" }
         },
         modes: {
           repulse: { distance: 50, duration: 0.4 }
