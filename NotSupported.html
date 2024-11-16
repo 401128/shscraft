@@ -1,82 +1,228 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Device Not Supported</title>
-    <style>
-        /* General Reset */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Device Not Supported</title>
+  <style>
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        body, html {
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            background: #0d0d0d; /* Dark background */
-            color: #ffffff;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+    /* Body Styling */
+    body {
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(135deg, #2e3b4e, #1e2834);
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      animation: fadeInBackground 2s ease;
+    }
 
-        .container {
-            text-align: center;
-            padding: 20px;
-            max-width: 90%;
-        }
+    /* Fade In Background Animation */
+    @keyframes fadeInBackground {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
 
-        /* Title Styles */
-        h1 {
-            font-size: 2em;
-            color: #00ff99; /* Neon green */
-            text-shadow: 0 0 10px #00ff99, 0 0 20px #00ff99, 0 0 30px #00ff99;
-            animation: flicker 2s infinite;
-        }
+    /* Heading Styling */
+    h1 {
+      font-size: 3rem;
+      color: #00ffea;
+      text-shadow: 0 0 10px #00ffea, 0 0 20px #00ffea, 0 0 30px #00ffea;
+      margin-bottom: 20px;
+      animation: glowText 1.5s ease-in-out infinite alternate;
+    }
 
-        /* Subtext Styles */
-        p {
-            font-size: 1.2em;
-            margin: 10px 0;
-            color: #cccccc;
-        }
+    /* Text Glow Animation */
+    @keyframes glowText {
+      0% {
+        text-shadow: 0 0 10px #00ffea, 0 0 20px #00ffea, 0 0 30px #00ffea;
+      }
+      100% {
+        text-shadow: 0 0 20px #00ffea, 0 0 40px #00ffea, 0 0 50px #00ffea;
+      }
+    }
 
-        /* Animations */
-        @keyframes flicker {
-            0%, 18%, 22%, 25%, 53%, 57%, 100% {
-                opacity: 1;
-            }
-            20%, 24%, 55% {
-                opacity: 0;
-            }
-        }
+    /* Danger Emoji Styling */
+    .danger-emoji {
+      font-size: 4rem;
+      color: #ff4500;
+      text-shadow: 0 0 10px #ff4500, 0 0 20px #ff4500, 0 0 30px #ff4500;
+      margin-bottom: 20px;
+      animation: pulseEmoji 1.5s infinite ease-in-out;
+    }
 
-        /* Floating Animation */
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
-        }
+    /* Danger Emoji Pulse Animation */
+    @keyframes pulseEmoji {
+      0% {
+        transform: scale(1);
+        text-shadow: 0 0 10px #ff4500, 0 0 20px #ff4500, 0 0 30px #ff4500;
+      }
+      50% {
+        transform: scale(1.1);
+        text-shadow: 0 0 20px #ff6347, 0 0 40px #ff6347, 0 0 50px #ff6347;
+      }
+      100% {
+        transform: scale(1);
+        text-shadow: 0 0 10px #ff4500, 0 0 20px #ff4500, 0 0 30px #ff4500;
+      }
+    }
 
-        .icon {
-            font-size: 5em;
-            color: #00ff99;
-            text-shadow: 0 0 10px #00ff99, 0 0 20px #00ff99;
-            animation: float 3s ease-in-out infinite;
-        }
-    </style>
+    /* Message Styling */
+    p {
+      font-size: 1.5rem;
+      color: #ffffff;
+      text-shadow: 0 0 5px #ffffff, 0 0 15px #00ffea;
+      animation: fadeInText 2s ease-out;
+    }
+
+    /* Fade In Text Animation */
+    @keyframes fadeInText {
+      0% {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Button Styling */
+    .retry-btn {
+      padding: 15px 30px;
+      font-size: 1.2rem;
+      background-color: #00ffea;
+      border: none;
+      border-radius: 10px;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+      text-transform: uppercase;
+      margin-top: 20px;
+      animation: slideUp 1s ease-out;
+    }
+
+    /* Slide Up Button Animation */
+    @keyframes slideUp {
+      0% {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .retry-btn:hover {
+      background-color: #00ccbf;
+      transform: scale(1.1);
+    }
+
+    /* Particle Background */
+    #particles-js {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+
+    /* Mobile-Only Device Check */
+    @media (max-width: 768px) {
+      body {
+        background: linear-gradient(135deg, #333, #1e2834);
+      }
+
+      h1 {
+        font-size: 2.5rem;
+      }
+
+      p {
+        font-size: 1.2rem;
+      }
+
+      .danger-emoji {
+        font-size: 3rem;
+      }
+    }
+
+  </style>
 </head>
 <body>
-    <div class="container">
-        <div class="icon">⚠️</div>
-        <h1>Device Not Supported</h1>
-        <p>Oops! This application is not available on your device.</p>
-        <p>Please try using a desktop or tablet device for the best experience.</p>
-    </div>
+
+  <!-- Particle Effect -->
+  <div id="particles-js"></div>
+
+  <div>
+    <div class="danger-emoji">⚠️</div>
+    <h1>Device Not Supported</h1>
+    <p>Sorry, this website is not supported on your device.</p>
+  </div>
+
+  <!-- Particle Effect Script -->
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <script>
+    particlesJS("particles-js", {
+      particles: {
+        number: {
+          value: 100,
+          density: { enable: true, value_area: 800 }
+        },
+        color: { value: "#00ffea" }, /* Cyan color for particles */
+        shape: {
+          type: "circle",
+          stroke: { width: 0, color: "#000000" }
+        },
+        opacity: {
+          value: 0.5,
+          random: true,
+          anim: { enable: true, speed: 1, opacity_min: 0 }
+        },
+        size: {
+          value: 3,
+          random: true
+        },
+        line_linked: {
+          enable: true,
+          distance: 150,
+          color: "#00ffea", /* Cyan for linking lines */
+          opacity: 0.4,
+          width: 1
+        },
+        move: {
+          enable: true,
+          speed: 2,
+          direction: "none",
+          random: true,
+          out_mode: "out"
+        }
+      },
+      interactivity: {
+        events: {
+          onhover: { enable: true, mode: "repulse" }
+        },
+        modes: {
+          repulse: { distance: 50, duration: 0.4 }
+        }
+      }
+    });
+  </script>
+
 </body>
 </html>
-
